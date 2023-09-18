@@ -29,7 +29,7 @@ if (select('.toggle-sidebar-btn')) {
   const usernameHeader = document.getElementById('usernameHeader');
   const nominativoHeader = document.getElementById('nominativoHeader');
   try {
-    const response = await fetch('http://localhost:3000/get-user-info', {
+    const response = await fetch('/get-user-info', {
       method: 'GET',
     });
     if (response.ok) {
