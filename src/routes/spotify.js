@@ -190,6 +190,7 @@ router.get('/recommendations', auth, async (req, res) => {
     }
     return res.status(200).json({ status: 'ok', data: raccomandationsR });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ error: 'Errore interno del server' });
   }
 });
