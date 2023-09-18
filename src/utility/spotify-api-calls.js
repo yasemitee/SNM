@@ -1,5 +1,6 @@
 require('dotenv').config();
 const Token = require('../models/spotifyToken.js');
+const fetch = require('node-fetch'); // Per fare in modo che funzioni anche per versioni di node < 18
 
 const URL = 'https://accounts.spotify.com/api/token';
 
