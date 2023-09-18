@@ -26,7 +26,7 @@ Una volta scaricato o clonato il codice sorgente sarà necessario:
 - Avviare il server
   > Se si scarica come dipendenza anche _nodemon_ si può utilizzare `npm start`
 
-Una volta seguiti i vari passi sarà possibile accedere al sito all'indirizzo **[http://localhost:3000/](http://localhost:3000/)**.
+Una volta seguiti i vari passi sarà possibile accedere al sito all'indirizzo (dev) **[http://localhost:3000/](http://localhost:3000/)**.
 
 ## Struttura del sito web
 
