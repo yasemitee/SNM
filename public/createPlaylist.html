@@ -267,16 +267,13 @@
         privateCheckbox.value = isPrivate.toString();
         formData.append('èPrivata', privateCheckbox.value);
         try {
-          const response = await fetch(
-            'http://localhost:3000/create-playlist',
-            {
-              method: 'POST',
-              body: JSON.stringify(Object.fromEntries(formData)),
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            }
-          );
+          const response = await fetch('/create-playlist', {
+            method: 'POST',
+            body: JSON.stringify(Object.fromEntries(formData)),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
           if (response.status === 200) {
             alert.style.display = 'none';
             succes.style.display = 'block';

@@ -259,7 +259,7 @@
         const username = document.getElementById('username');
         const email = document.getElementById('email');
         try {
-          const response = await fetch('http://localhost:3000/get-user-info', {
+          const response = await fetch('/get-user-info', {
             method: 'GET',
           });
           if (response.ok) {
@@ -286,9 +286,7 @@
 
           if (query.length > 1) {
             try {
-              const response = await fetch(
-                `http://localhost:3000/search-artist?artist=${query}`
-              );
+              const response = await fetch(`/search-artist?artist=${query}`);
               const data = await response.json();
               const artists = data.data;
               artistDropdown.innerHTML = '';
@@ -349,7 +347,7 @@
           const artistId = e.target.dataset.id;
           try {
             const response = await fetch(
-              `http://localhost:3000/add-favourite-artist?artistId=${artistId}`,
+              `/add-favourite-artist?artistId=${artistId}`,
               {
                 method: 'POST',
               }
@@ -369,12 +367,9 @@
 
       (async () => {
         try {
-          const response = await fetch(
-            'http://localhost:3000/get-favourite-artists',
-            {
-              method: 'GET',
-            }
-          );
+          const response = await fetch('/get-favourite-artists', {
+            method: 'GET',
+          });
           if (response.ok) {
             const r = await response.json();
             const artists = r.data.artistiPreferiti;
@@ -394,7 +389,7 @@
               removeBtn.addEventListener('click', async () => {
                 try {
                   const response = await fetch(
-                    `http://localhost:3000/remove-favourite-artist?artistId=${artist.id}`,
+                    `/remove-favourite-artist?artistId=${artist.id}`,
                     {
                       method: 'DELETE',
                     }
@@ -421,12 +416,9 @@
       const searchGenre = document.querySelector('.fav-genre .search-form');
       (async () => {
         try {
-          const response = await fetch(
-            'http://localhost:3000/get-available-genres',
-            {
-              method: 'GET',
-            }
-          );
+          const response = await fetch('/get-available-genres', {
+            method: 'GET',
+          });
           if (response.ok) {
             const r = await response.json();
             const genres = r.data.genres;
@@ -465,7 +457,7 @@
           const genre = e.target.innerText;
           try {
             const response = await fetch(
-              `http://localhost:3000/add-favourite-genre?genre=${genre}`,
+              `/add-favourite-genre?genre=${genre}`,
               {
                 method: 'POST',
               }
@@ -488,12 +480,9 @@
 
       async function favGen() {
         try {
-          const response = await fetch(
-            'http://localhost:3000/get-favourite-genres',
-            {
-              method: 'GET',
-            }
-          );
+          const response = await fetch('/get-favourite-genres', {
+            method: 'GET',
+          });
           if (response.ok) {
             const r = await response.json();
             const genres = r.data.generiPreferiti;
@@ -517,7 +506,7 @@
               removeBtn.addEventListener('click', async () => {
                 try {
                   const response = await fetch(
-                    `http://localhost:3000/remove-favourite-genre?genre=${genre}`,
+                    `/remove-favourite-genre?genre=${genre}`,
                     {
                       method: 'DELETE',
                     }

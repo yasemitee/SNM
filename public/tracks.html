@@ -235,7 +235,7 @@
       }
 
       let userPlaylists = [];
-      fetch('http://localhost:3000/get-created-playlists')
+      fetch('/get-created-playlists')
         .then((response) => response.json())
         .then((data) => {
           if (data.status === 'ok') {
@@ -281,7 +281,7 @@
       });
       const addTrackToPlaylist = async (playlistId, trackId) => {
         const response = await fetch(
-          `http://localhost:3000/add-track-playlist?playlistId=${playlistId}&trackId=${trackId}`,
+          `/add-track-playlist?playlistId=${playlistId}&trackId=${trackId}`,
           {
             method: 'POST',
           }
@@ -305,9 +305,7 @@
           if (query.length < 1) {
             return;
           }
-          const response = await fetch(
-            `http://localhost:3000/search-tracks?query=${query}`
-          );
+          const response = await fetch(`/search-tracks?query=${query}`);
           const data = await response.json();
 
           const tracks = data.data;
@@ -414,15 +412,13 @@
           if (query.length < 1) {
             return;
           }
-          const response = await fetch(
-            `http://localhost:3000/search-artist?artist=${query}`
-          );
+          const response = await fetch(`/search-artist?artist=${query}`);
           const data = await response.json();
           console.log(data.data);
 
           const artistId = data.data[0].id;
           const response2 = await fetch(
-            `http://localhost:3000/get-artist-tracks?artistId=${artistId}`
+            `/get-artist-tracks?artistId=${artistId}`
           );
           const data2 = await response2.json();
           const tracks = data2.data;
@@ -531,9 +527,7 @@
           if (query.length < 1) {
             return;
           }
-          const response = await fetch(
-            `http://localhost:3000/recommendations-genre?query=${query}`
-          );
+          const response = await fetch(`/recommendations-genre?query=${query}`);
           const data = await response.json();
           const tracks = data.data.tracks;
           const tracksContainer = document.querySelector('.tracks-card .row');

@@ -306,7 +306,7 @@
         formData.append('èPrivata', privateCheckbox.value);
         try {
           const response = await fetch(
-            'http://localhost:3000/update-playlist/' + id,
+            '/update-playlist/' + id,
             {
               method: 'PATCH',
               body: JSON.stringify(Object.fromEntries(formData)),

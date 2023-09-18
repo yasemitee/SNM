@@ -231,7 +231,7 @@
     <script src="./main.js"></script>
     <script>
       let userPlaylists = [];
-      fetch('http://localhost:3000/get-created-playlists')
+      fetch('/get-created-playlists')
         .then((response) => response.json())
         .then((data) => {
           if (data.status === 'ok') {
@@ -279,7 +279,7 @@
 
       const addTrackToPlaylist = async (playlistId, trackId) => {
         const response = await fetch(
-          `http://localhost:3000/add-track-playlist?playlistId=${playlistId}&trackId=${trackId}`,
+          `/add-track-playlist?playlistId=${playlistId}&trackId=${trackId}`,
           {
             method: 'POST',
           }
