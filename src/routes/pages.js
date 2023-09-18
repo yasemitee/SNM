@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const auth = require('./auth');
 
-__dirname = '/Users/yassine/Desktop/SNM';
+__dirname = __dirname.replace('/src/routes', '');
 
 router.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/hero.html');
