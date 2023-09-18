@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;1,800&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    color: #333;
+}
+
+html { height: 100%; }
+
+strong{
+    font-weight: 700;
+}
+
+body{
+    background: url(../img/sfondo-login.svg) no-repeat;
+    background-size: cover;
+    min-height: 100%;
+}
+
+.nav-link {
+    color: #FF7000;
+}
+
+.nav-link:hover {
+    color: #FF7000;
+}
+
+.btn-custom{
+    background-color: #FF7000;
+    border-radius: 15px;
+    color: #fff;
+    
+}
+
+.btn-custom:hover{
+    background-color: #FF7000;
+    border-radius: 15px;
+    color: #fff;
+    transform: scale(0.99);
+    transition: 0.2s;
+}
+
+input:focus,
+input:hover,
+input:active,
+textarea:active {
+  outline: none!important;
+  box-shadow: 0 0 6px 0 #FF7000!important;
+  border-color:#FF7000!important;
+}
+
+/*Sfondo a sinistra*/
+/* .left-container{
+    width: 100%;
+    background: url(/img/sfondo-reg.svg) no-repeat;
+    background-size:cover;
+    background-position: right;
+} */
+

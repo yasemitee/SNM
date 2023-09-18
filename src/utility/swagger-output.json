@@ -1,0 +1,1005 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Social Network for Music API",
+    "description": "API per il sito Social Network for Music",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/home": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/login": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login di un utente già registrato (genera un token JWT valido per 12 ore ) ",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/myPlaylist": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/publicPlaylist": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/createPlaylist": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/profile": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/playlist/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/tracks": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/editProfile": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/editPlaylist/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/registrazione": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Registrazione di un nuovo utente",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "example": "any"
+                },
+                "cognome": {
+                  "example": "any"
+                },
+                "username": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/detete-account": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Elimina l'account dell'utente",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/get-user-info": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Restituisce le informazioni dell'utente",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/add-favourite-artist": {
+      "post": {
+        "tags": [
+          "User favourite"
+        ],
+        "summary": "Aggiunge un artista ai preferiti dell'utente",
+        "description": "",
+        "parameters": [
+          {
+            "name": "artistId",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/get-favourite-artists": {
+      "get": {
+        "tags": [
+          "User favourite"
+        ],
+        "summary": "Restituisce gli artisti preferiti dell'utente",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/remove-favourite-artist": {
+      "delete": {
+        "tags": [
+          "User favourite"
+        ],
+        "summary": "Rimuove un artista dai preferiti dell'utente",
+        "description": "",
+        "parameters": [
+          {
+            "name": "artistId",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/add-favourite-genre": {
+      "post": {
+        "tags": [
+          "User favourite"
+        ],
+        "summary": "Aggiunge un genere ai preferiti dell'utente",
+        "description": "",
+        "parameters": [
+          {
+            "name": "genre",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/get-favourite-genres": {
+      "get": {
+        "tags": [
+          "User favourite"
+        ],
+        "summary": "Restituisce i generi preferiti dell'utente",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/remove-favourite-genre": {
+      "delete": {
+        "tags": [
+          "User favourite"
+        ],
+        "summary": "Rimuove un genere dai preferiti dell'utente",
+        "description": "",
+        "parameters": [
+          {
+            "name": "genre",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/update-user-info": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Aggiorna le informazioni dell'utente",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "username": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                },
+                "nome": {
+                  "example": "any"
+                },
+                "cognome": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/create-playlist": {
+      "post": {
+        "tags": [
+          "Playlist"
+        ],
+        "summary": "Creazione di una nuova playlist",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "titolo": {
+                  "example": "any"
+                },
+                "descrizione": {
+                  "example": "any"
+                },
+                "tags": {
+                  "example": "any"
+                },
+                "èPrivata": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/update-playlist/{id}": {
+      "patch": {
+        "tags": [
+          "Playlist"
+        ],
+        "summary": "Modifica di una playlist",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "titolo": {
+                  "example": "any"
+                },
+                "descrizione": {
+                  "example": "any"
+                },
+                "tags": {
+                  "example": "any"
+                },
+                "èPrivata": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/get-playlists-public": {
+      "get": {
+        "tags": [
+          "Playlist"
+        ],
+        "summary": "Restituisce le playlist pubbliche",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/get-my-playlists": {
+      "get": {
+        "tags": [
+          "Playlist"
+        ],
+        "summary": "Restituisce le playlist dell'utente loggato",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/get-created-playlists": {
+      "get": {
+        "tags": [
+          "Playlist"
+        ],
+        "summary": "Restituisce le playlist create dall'utente loggato",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/get-playlist/{id}": {
+      "get": {
+        "tags": [
+          "Playlist"
+        ],
+        "summary": "Restituisce le informazioni riguardanti una playlist",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/delete-playlist/{id}": {
+      "delete": {
+        "tags": [
+          "Playlist"
+        ],
+        "summary": "Elimina una playlist (solo il proprietario)",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/add-track-playlist": {
+      "post": {
+        "tags": [
+          "Playlist track "
+        ],
+        "summary": "Aggiunge una traccia ad una playlist (solo il proprietario)",
+        "description": "",
+        "parameters": [
+          {
+            "name": "playlistId",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "trackId",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/remove-track-playlist": {
+      "delete": {
+        "tags": [
+          "Playlist track"
+        ],
+        "summary": "Rimuove una traccia da una playlist (solo il proprietario)",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "playlistId": {
+                  "example": "any"
+                },
+                "trackId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/get-playlist-tracks/{id}": {
+      "get": {
+        "tags": [
+          "Playlist track"
+        ],
+        "summary": "Restituisce le tracce di una playlist",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/follow-playlist/{id}": {
+      "post": {
+        "tags": [
+          "Social network interaction"
+        ],
+        "summary": "Permette di seguire una playlist",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/unfollow-playlist/{id}": {
+      "delete": {
+        "tags": [
+          "Social network interaction"
+        ],
+        "summary": "Permette di smettere di seguire una playlist",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/search-tracks": {
+      "get": {
+        "tags": [
+          "Spotify"
+        ],
+        "summary": "Ricerca di una traccia",
+        "description": "",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/get-track/{id}": {
+      "get": {
+        "tags": [
+          "Spotify"
+        ],
+        "summary": "Restituisce le informazioni su una traccia",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/search-artist": {
+      "get": {
+        "tags": [
+          "Spotify"
+        ],
+        "summary": "Ricerca di un artista",
+        "description": "",
+        "parameters": [
+          {
+            "name": "artist",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/get-artist-tracks": {
+      "get": {
+        "tags": [
+          "Spotify"
+        ],
+        "summary": "Restituisce le tracce di un artista",
+        "description": "",
+        "parameters": [
+          {
+            "name": "artistId",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/get-available-genres": {
+      "get": {
+        "tags": [
+          "Spotify"
+        ],
+        "summary": "Restituisce i generi disponibili su Spotify",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/recommendations": {
+      "get": {
+        "tags": [
+          "Spotify"
+        ],
+        "summary": "Restituisce le raccomandazioni per l'utente in base ai suoi generi e artisti preferiti",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/recommendations-genre": {
+      "get": {
+        "tags": [
+          "Spotify"
+        ],
+        "summary": "Restituisce le raccomandazioni per l'utente in base al genere fornito",
+        "description": "",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/show-modal": {
+      "get": {
+        "tags": [
+          "Utility"
+        ],
+        "summary": "Mostra il modal di benvenuto se non è stato mostrato in precedenza (si resetta quando si chiude la sessione)",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

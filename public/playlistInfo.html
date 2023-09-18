@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Social Network for Music</title>
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <!-- Icone -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
+      integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Style.css -->
+    <link rel="stylesheet" href="/style/style-home.css" />
+  </head>
+  <body>
+    <!-- ======= Header ======= -->
+    <header
+      id="header"
+      class="header fixed-top d-flex align-items-center justify-content-between"
+    >
+      <div class="d-flex align-items-center justify-content-between w-50">
+        <i class="bi bi-list toggle-sidebar-btn"></i>
+        <a href="home.html" class="logo d-flex align-items-center">
+          <i class="fa-solid fa-headphones fa-2xl me-3"></i>
+          <span class="d-none d-lg-block">SNM</span>
+        </a>
+      </div>
+      <div class="nav-item dropdown pe-3">
+        <a
+          class="nav-link nav-profile d-flex align-items-center pe-0"
+          href="#"
+          data-bs-toggle="dropdown"
+        >
+          <img
+            src="/img/profile.png"
+            alt="profile"
+            style="width: 25px; height: 25px; border-radius: 50%"
+          />
+          <span
+            class="d-none d-md-block dropdown-toggle ps-2"
+            id="usernameHeader"
+            >Username</span
+          >
+        </a>
+
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+          <li class="dropdown-header" id="nominativoHeader">
+            <h6>Nome Cognome</h6>
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+
+          <li>
+            <a class="dropdown-item d-flex align-items-center" href="/profile">
+              <i class="bi bi-person"></i>
+              <span>Il mio profilo</span>
+            </a>
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li>
+            <a class="dropdown-item d-flex align-items-center" href="/logout">
+              <i class="bi bi-box-arrow-right"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+      <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="/home">
+            <i class="bi bi-grid"></i>
+            <span>Homepage</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/profile">
+            <i class="bi bi-person"></i>
+            <span>Profilo</span>
+          </a>
+        </li>
+        <li class="nav-heading">Scopri</li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="/tracks">
+            <i class="bi bi-music-note"></i>
+            <span>Brani</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="/publicPlaylist">
+            <i class="bi bi-music-note-list"></i>
+            <span>Playlists</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="/myPlaylist">
+            <i class="bi bi-file-music"></i>
+            <span>Le mie playlist</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+    <!-- ======= Main ======= -->
+    <div class="main" id="main">
+      <div class="playlist-info d-flex mb-3">
+        <div>
+          <div class="playlist-img me-4"></div>
+          <p class="playlist-followers mt-2 text-secondary"></p>
+        </div>
+        <div class="playlist-text">
+          <div class="playlist-title-tags d-flex">
+            <h1 class="playlist-title"></h1>
+            <div class="playlist-tags ms-4"></div>
+          </div>
+          <div class="d-flex">
+            <div class="creator d-flex align-items-center">
+              <i class="fa-regular fa-user"></i>
+              <h4 class="playlist-creator m-0 ms-1"></h4>
+            </div>
+
+            <div class="duration d-flex align-items-center">
+              <i class="fa-regular fa-clock ms-4"></i>
+              <h4 class="playlist-duration m-0 ms-1"></h4>
+            </div>
+
+            <button
+              class="btn ms-3 d-none"
+              id="follow"
+              onclick="followPlaylist()"
+            >
+              <i class="fa-regular fa-heart fa-lg" style="color: #ff7000"></i>
+            </button>
+
+            <button
+              class="btn ms-3 d-none"
+              id="unfollow"
+              onclick="unfollowPlaylist()"
+            >
+              <i class="fa-solid fa-heart fa-lg" style="color: #ff7000"></i>
+            </button>
+
+            <div class="dropdown ms-3 d-none" id="edit">
+              <button
+                class="btn"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-ellipsis"></i>
+              </button>
+              <ul class="dropdown-menu p-2" style="border-radius: 6px">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="/tracks"
+                    style="border-radius: 8px"
+                    >Aggiungi brani</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    id="editP"
+                    href="#"
+                    style="border-radius: 8px"
+                    >Modifica</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    onclick="deletePlaylist()"
+                    style="border-radius: 8px"
+                    >Elimina</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <p class="playlist-description text-secondary"></p>
+        </div>
+      </div>
+      <hr />
+      <!-- ======= Playlist Tracks ======= -->
+      <div class="playlist-tracks">
+        <div
+          class="tracks-header d-flex align-items-center justify-content-between mb-3"
+        >
+          <h2 class="track-quantity">traccie</h2>
+
+          <!-- <a href="/tracks" class="btn btn-custom" id="add-track-button"
+            >Aggiungi brano</a
+          > -->
+        </div>
+        <div class="tracks-list"></div>
+        <div class="alert track-alert alert-danger mt-3 d-none" role="alert">
+          <i class="bi bi-exclamation-circle"></i> Non è possibile rimuovere la
+          traccia
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script>
+      const id = window.location.href.split('/').pop();
+      const playlistTitle = document.querySelector('.playlist-title');
+      const playlistDescription = document.querySelector(
+        '.playlist-description'
+      );
+      const playlistImg = document.querySelector('.playlist-img');
+      const playlistTags = document.querySelector('.playlist-tags');
+      const tracksList = document.querySelector('.tracks-list');
+      const editButton = document.querySelector('#edit');
+      const followButton = document.querySelector('#follow');
+      const unfollowButton = document.querySelector('#unfollow');
+      const playlistFollowers = document.querySelector('.playlist-followers');
+      const playlistCreator = document.querySelector('.playlist-creator');
+      const playlistDuration = document.querySelector('.playlist-duration');
+      const playlistQuantity = document.querySelector('.track-quantity');
+      (async () => {
+        try {
+          const response = await fetch('/get-playlist/' + id);
+          if (response.status === 200) {
+            const r = await response.json();
+            const playlist = r.data;
+            const user = r.user;
+            const userId = r.userId;
+            const playlistId = playlist._id;
+            const editLink = editButton.querySelector('#editP');
+            editLink.href = '/editPlaylist/' + playlistId;
+
+            if (playlist.creatore === user) {
+              editButton.classList.remove('d-none');
+            } else {
+              const isFollowing = playlist.followers.find(
+                (follower) => follower.userId === userId
+              );
+              if (isFollowing) {
+                unfollowButton.classList.remove('d-none');
+              } else {
+                followButton.classList.remove('d-none');
+              }
+            }
+            const img = document.createElement('div');
+            img.classList.add('shadow');
+            img.style.position = 'relative';
+            img.style.width = '150px';
+            img.style.height = '150px';
+            if (playlist.tracce.length === 0) {
+              const picture1 = document.createElement('img');
+              picture1.classList.add('img-fluid');
+              picture1.src = '/img/playlist-default.png';
+              img.appendChild(picture1);
+            } else if (playlist.tracce.length === 1) {
+              const picture1 = document.createElement('img');
+              picture1.classList.add('img-fluid');
+              picture1.src = playlist.tracce[0].immagine;
+              img.appendChild(picture1);
+            } else if (playlist.tracce.length <= 3) {
+              img.classList.add('d-flex', 'justify-content-center');
+              const picture1 = document.createElement('img');
+              picture1.classList.add('img-fluid');
+              picture1.style.objectFit = 'cover';
+              picture1.style.maxWidth = '50%';
+              picture1.src = playlist.tracce[0].immagine;
+              img.appendChild(picture1);
+              const picture2 = document.createElement('img');
+              picture2.classList.add('img-fluid');
+              picture2.style.objectFit = 'cover';
+              picture2.style.maxWidth = '50%';
+              picture2.src = playlist.tracce[1].immagine;
+              img.appendChild(picture2);
+            } else {
+              img.classList.add('d-flex', 'justify-content-center');
+              const picture1 = document.createElement('img');
+              picture1.style.position = 'absolute';
+              picture1.style.top = '0';
+              picture1.style.left = '0';
+              picture1.classList.add('img-fluid', 'w-50');
+              picture1.src = playlist.tracce[0].immagine;
+              img.appendChild(picture1);
+              const picture2 = document.createElement('img');
+              picture2.style.position = 'absolute';
+              picture2.style.top = '0';
+              picture2.style.right = '0';
+              picture2.classList.add('img-fluid', 'w-50');
+              picture2.src = playlist.tracce[1].immagine;
+              img.appendChild(picture2);
+              const picture3 = document.createElement('img');
+              picture3.style.position = 'absolute';
+              picture3.style.bottom = '0';
+              picture3.style.left = '0';
+              picture3.classList.add('img-fluid', 'w-50');
+              picture3.src = playlist.tracce[2].immagine;
+              img.appendChild(picture3);
+              const picture4 = document.createElement('img');
+              picture4.style.position = 'absolute';
+              picture4.style.bottom = '0';
+              picture4.style.right = '0';
+              picture4.classList.add('img-fluid', 'w-50');
+              picture4.src = playlist.tracce[3].immagine;
+              img.appendChild(picture4);
+            }
+            playlistImg.appendChild(img);
+            playlistTitle.innerText = playlist.titolo;
+            playlistCreator.innerText = playlist.creatore;
+            playlistFollowers.innerText =
+              playlist.followers.length + ' followers';
+            playlistDescription.innerText = playlist.descrizione;
+            playlistImg.src = playlist.img;
+            playlistQuantity.innerText = playlist.tracce.length + ' tracce';
+            let duration = 0;
+            playlist.tracce.forEach((track) => {
+              duration += track.durata;
+            });
+            console.log(duration);
+            duration = new Date(duration);
+            const hours = duration.getMinutes() / 60;
+            const minutes = duration.getMinutes();
+            const minutesString = minutes < 10 ? '0' + minutes : minutes;
+            const hoursRounded = Math.floor(hours);
+            playlistDuration.innerText =
+              hoursRounded + 'hr ' + minutesString + 'min';
+
+            playlist.tags.forEach((tag) => {
+              const badge = document.createElement('span');
+              badge.classList.add('badge', 'me-2');
+              badge.innerText = tag;
+              playlistTags.appendChild(badge);
+            });
+            const tracks = playlist.tracce.map((track) => {
+              return {
+                id: track.id,
+                titolo: track.titolo,
+                cantante: track.cantante,
+                album: track.album,
+                durata: track.durata,
+                immagine: track.immagine,
+              };
+            });
+            const tracksList = document.querySelector('.tracks-list');
+            if (tracks.length === 0) {
+              const noTracks = document.createElement('p');
+              noTracks.classList.add('text-center', 'mt-5', 'fs-5');
+              noTracks.innerText = 'Non ci sono tracce in questa playlist';
+              tracksList.appendChild(noTracks);
+            }
+            tracks.forEach((track) => {
+              const trackElement = document.createElement('div');
+              const duration = new Date(track.durata);
+              const minutes = duration.getMinutes();
+              const seconds = duration.getSeconds();
+              const secondsString = seconds < 10 ? '0' + seconds : seconds;
+              const minutesString = minutes < 10 ? '0' + minutes : minutes;
+              track.durata = minutesString + ':' + secondsString;
+              trackElement.classList.add(
+                'track',
+                'row',
+                'align-items-center',
+                'd-flex'
+              );
+              trackElement.innerHTML = `
+        <div class="col-5 d-flex align-items-center mb-3">
+          <div class="track-img me-3">
+            <img src="${track.immagine}" style="width: 60px" alt="" />
+          </div>
+          <div class="track-text">
+            <h5 id="track-title-play" class="track-title text-truncate mb-1 fw-semibold">${track.titolo}</h5>
+            <p class="track-artist text-truncate m-0 text-secondary">${track.cantante}</p>
+          </div>
+        </div>
+        <div class="col-4 d-flex align-items-center track-info">
+          <p class="track-album text-truncate"><i class="fa-solid fa-compact-disc"></i>&nbsp;${track.album}</p>
+        </div>
+        <div class="col-3 d-flex align-items-center p-0 d-flex">
+          <p class="track-duration me-5"><i class="fa-regular fa-clock d-inline"></i>&nbsp;${track.durata}</p>
+         <div class="track-buttons ms-md-5 m-0 mb-3"></div>
+        </div>
+      `;
+              tracksList.appendChild(trackElement);
+              const trackButtons = trackElement.querySelector('.track-buttons');
+              if (playlist.creatore === user) {
+                const removeButton = document.createElement('button');
+                removeButton.classList.add('badge-hover-orange', 'me-3');
+                removeButton.style.borderRadius = '50%';
+                removeButton.style.width = '40px';
+                removeButton.style.height = '40px';
+                removeButton.style.borderWidth = '0';
+                removeButton.innerHTML =
+                  '<i class="fa-solid fa-xmark fa-lg"></i>';
+                removeButton.addEventListener('click', () => {
+                  removeTrack(track.id, playlistId);
+                });
+                trackButtons.appendChild(removeButton);
+              }
+            });
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      })();
+
+      function removeTrack(trackId, playlistId) {
+        fetch('/remove-track-playlist', {
+          method: 'DELETE',
+          body: JSON.stringify({
+            playlistId: playlistId,
+            trackId: trackId,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            console.log(res);
+            if (res.status === 'ok') {
+              window.location.href = '/playlist/' + id;
+            } else {
+              document.querySelector('.track-alert').classList.remove('d-none');
+            }
+          });
+      }
+
+      function deletePlaylist() {
+        fetch('/delete-playlist/' + id, {
+          method: 'DELETE',
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.status === 'ok') {
+              window.location.href = '/myPlaylist';
+            } else {
+              document.querySelector('.alert').classList.remove('d-none');
+              document.querySelector('.alert').innerText = res.error;
+            }
+          });
+      }
+
+      function followPlaylist() {
+        fetch('/follow-playlist/' + id, {
+          method: 'POST',
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.status === 'ok') {
+              window.location.reload();
+            } else {
+              document.querySelector('.alert').classList.remove('d-none');
+              document.querySelector('.alert').innerText = res.error;
+            }
+          });
+      }
+
+      function unfollowPlaylist() {
+        fetch('/unfollow-playlist/' + id, {
+          method: 'DELETE',
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.status === 'ok') {
+              window.location.reload();
+            } else {
+              document.querySelector('.alert').classList.remove('d-none');
+              document.querySelector('.alert').innerText = res.error;
+            }
+          });
+      }
+    </script>
+  </body>
+</html>

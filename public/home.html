@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <!-- Font -->
+    <!-- <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <!-- Icone -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
+      integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Swiper -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+    <!-- Style.css -->
+    <link rel="stylesheet" href="./style/style-home.css" />
+  </head>
+  <body>
+    <!-- ======= Header ======= -->
+    <header
+      id="header"
+      class="header fixed-top d-flex align-items-center justify-content-between"
+    >
+      <div class="d-flex align-items-center justify-content-between w-50">
+        <i class="bi bi-list toggle-sidebar-btn"></i>
+        <a href="home.html" class="logo d-flex align-items-center">
+          <i class="fa-solid fa-headphones fa-2xl me-3"></i>
+          <span class="d-none d-lg-block">SNM</span>
+        </a>
+      </div>
+      <div class="nav-item dropdown pe-3">
+        <a
+          class="nav-link nav-profile d-flex align-items-center pe-0"
+          href="#"
+          data-bs-toggle="dropdown"
+        >
+          <img
+            src="./img/profile.png"
+            alt="profile"
+            style="width: 25px; height: 25px; border-radius: 50%"
+          />
+          <span
+            class="d-none d-md-block dropdown-toggle ps-2"
+            id="usernameHeader"
+            >Username</span
+          >
+        </a>
+
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+          <li class="dropdown-header" id="nominativoHeader">
+            <h6>Nome Cognome</h6>
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+
+          <li>
+            <a class="dropdown-item d-flex align-items-center" href="/profile">
+              <i class="bi bi-person"></i>
+              <span>Il mio profilo</span>
+            </a>
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li>
+            <a class="dropdown-item d-flex align-items-center" href="/logout">
+              <i class="bi bi-box-arrow-right"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+      <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/home">
+            <i class="bi bi-grid"></i>
+            <span>Homepage</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="/profile">
+            <i class="bi bi-person"></i>
+            <span>Profilo</span>
+          </a>
+        </li>
+        <li class="nav-heading">Scopri</li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="/tracks">
+            <i class="bi bi-music-note"></i>
+            <span>Brani</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="/publicPlaylist">
+            <i class="bi bi-music-note-list"></i>
+            <span>Playlists</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="/myPlaylist">
+            <i class="bi bi-file-music"></i>
+            <span>Le mie playlist</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+    <!-- ======= Main ======= -->
+    <div class="main" id="main">
+      <div class="modal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title" style="color: #ff7000">
+                Completa il tuo profilo
+              </h3>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <p>
+                Completa il tuo profilo aggiungendo i tuoi artisti e generi
+                musicali preferiti! In questo modo SNM potrà offrirti ogni volta
+                <strong style="color: #ff7000">consigli personalizzati</strong>
+                in base ai tuoi gusti musicali.
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-custom-outline"
+                data-bs-dismiss="modal"
+                style="border-radius: 8px"
+              >
+                Chiudi
+              </button>
+              <button
+                type="button"
+                class="btn btn-custom"
+                style="border-radius: 8px"
+                onclick="window.location.href = '/profile'"
+              >
+                Completa il profilo
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="offcanvas offcanvas-end"
+        tabindex="-1"
+        id="offcanvasRight"
+        aria-labelledby="offcanvasRightLabel"
+      >
+        <div class="offcanvas-header">
+          <h1
+            class="offcanvas-title text-truncate"
+            id="offcanvasRightLabel"
+          ></h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">...</div>
+      </div>
+      <section class="homepage">
+        <div class="row p-3 pe-0" id="fav-artist">
+          <h2 class="mb-4 p-0 fw-bold">Artisti preferiti</h2>
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper"></div>
+            <div class="swiper-scrollbar"></div>
+          </div>
+        </div>
+        <div class="row p-3 pe-0" id="public">
+          <h2 class="mb-4 p-0 fw-bold">Playlist pubbliche</h2>
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper"></div>
+            <div class="swiper-scrollbar"></div>
+          </div>
+        </div>
+        <div class="row p-3 pe-0" id="recommendation">
+          <h2 class="mb-4 p-0 fw-bold">Brani consigliati</h2>
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper"></div>
+            <div class="swiper-scrollbar"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="./main.js"></script>
+    <script>
+      let userPlaylists = [];
+      fetch('http://localhost:3000/get-created-playlists')
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === 'ok') {
+            userPlaylists.push(...data.data);
+          }
+        });
+      console.log(userPlaylists);
+
+      const offcanvasBody = document.querySelector(
+        '#offcanvasRight .offcanvas-body'
+      );
+      offcanvasBody.addEventListener('click', (e) => {
+        if (e.target.classList.contains('dropup')) {
+          const dropdown = e.target.nextElementSibling;
+          dropdown.innerHTML = `                             
+          <li>
+             <a class="dropdown-header d-flex" href="/createPlaylist">
+              <i class="fa-solid fa-plus fa-lg align-self-center"></i>
+              <span class="mb-0 ms-2" style="font-size: 16px">Nuova playlist</span>
+              </a>
+           </li>
+           <li>
+             <hr class="dropdown-divider" />
+            </li>`;
+          userPlaylists.forEach((playlist) => {
+            const playlistItem = document.createElement('li');
+            playlistItem.innerHTML = `
+            <li class="nav-item dropdown-item d-flex align-items-center">
+              <i class="bi bi-music-note-list"></i>
+              <a class="dropdown-item" href="#" data-id="${
+                playlist._id
+              }" data-trackid="${
+              e.target.closest('.offcanvas-body').querySelector('.track-id')
+                .textContent
+            }">${playlist.titolo}</a>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            `;
+            dropdown.appendChild(playlistItem);
+          });
+        }
+      });
+
+      const addTrackToPlaylist = async (playlistId, trackId) => {
+        const response = await fetch(
+          `http://localhost:3000/add-track-playlist?playlistId=${playlistId}&trackId=${trackId}`,
+          {
+            method: 'POST',
+          }
+        );
+        const data = await response.json();
+      };
+
+      offcanvasBody.addEventListener('click', async (e) => {
+        event.preventDefault();
+        if (e.target.classList.contains('dropdown-item')) {
+          const playlistId = e.target.dataset.id;
+          const trackId = e.target.dataset.trackid;
+          addTrackToPlaylist(playlistId, trackId);
+        }
+      });
+
+      fetch('/get-user-info')
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === 'ok') {
+            if (
+              data.data.generiPreferiti.lenght === 0 ||
+              data.data.artistiPreferiti.lenght === 0
+            ) {
+              const toast = document.querySelector('.toast');
+              const toastBody = document.querySelector('.toast-body');
+              toastBody.textContent =
+                'Completa il tuo profilo per ricevere consigli personalizzati';
+              const toastButton = document.createElement('button');
+              toastButton.classList.add('btn', 'btn-primary', 'btn-sm');
+              toastButton.textContent = 'Completa il profilo';
+              toastButton.addEventListener('click', () => {
+                window.location.href = '/profile';
+              });
+              toastBody.appendChild(toastButton);
+              const toastCloseButton = document.createElement('button');
+              toastCloseButton.classList.add('btn', 'btn-secondary', 'btn-sm');
+              toastCloseButton.setAttribute('data-bs-dismiss', 'toast');
+              toastCloseButton.textContent = 'Chiudi';
+              toastBody.appendChild(toastCloseButton);
+              const toastInstance = new bootstrap.Toast(toast);
+              toastInstance.show();
+            }
+          }
+        });
+
+      var swiper = new Swiper('.mySwiper', {
+        slidesPerView: 6,
+        spaceBetween: 16,
+        scrollbar: {
+          el: '.swiper-scrollbar',
+          draggable: true,
+        },
+
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+          mousewheel: true,
+
+          breakpoints: {
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+          },
+        },
+      });
+
+      fetch('/get-playlists-public')
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === 'ok') {
+            const playlists = data.data;
+            const mySwiperWrapper = document.querySelector(
+              '#public .mySwiper .swiper-wrapper'
+            );
+            //shuffle array to get random playlists
+            playlists.sort(() => Math.random() - 0.5);
+            playlists.forEach((playlist) => {
+              const swiperSlide = document.createElement('div');
+              swiperSlide.classList.add('swiper-slide');
+              const playlistCard = document.createElement('a');
+              playlistCard.classList.add('card', 'mb-4', 'border-0', 'hover');
+              playlistCard.style.width = '128px';
+              playlistCard.href = '/playlist/' + playlist._id;
+
+              const img = document.createElement('div');
+              img.style.position = 'relative';
+              img.style.height = '128px';
+              img.style.width = '128px';
+              img.classList.add('card-img-top', 'rounded');
+              if (playlist.tracce.length === 0) {
+                const picture1 = document.createElement('img');
+                picture1.classList.add('img-fluid', 'rounded');
+                picture1.src = './img/playlist-default.png';
+                img.appendChild(picture1);
+              } else if (playlist.tracce.length === 1) {
+                const picture1 = document.createElement('img');
+                picture1.classList.add('img-fluid', 'rounded');
+                picture1.src = playlist.tracce[0].immagine;
+                img.appendChild(picture1);
+              } else if (playlist.tracce.length <= 3) {
+                img.classList.add('d-flex', 'justify-content-center');
+                const picture1 = document.createElement('img');
+                picture1.classList.add('img-fluid', 'rounded-start');
+                picture1.style.objectFit = 'cover';
+                picture1.style.maxWidth = '50%';
+                picture1.src = playlist.tracce[0].immagine;
+                img.appendChild(picture1);
+                const picture2 = document.createElement('img');
+                picture2.classList.add('img-fluid', 'rounded-end');
+                picture2.style.objectFit = 'cover';
+                picture2.style.maxWidth = '50%';
+                picture2.src = playlist.tracce[1].immagine;
+                img.appendChild(picture2);
+              } else {
+                img.classList.add('d-flex', 'justify-content-center');
+                const picture1 = document.createElement('img');
+                picture1.style.position = 'absolute';
+                picture1.style.top = '0';
+                picture1.style.left = '0';
+                picture1.classList.add('img-fluid', 'w-50', 'rounded-top-left');
+                picture1.src = playlist.tracce[0].immagine;
+                img.appendChild(picture1);
+                const picture2 = document.createElement('img');
+                picture2.style.position = 'absolute';
+                picture2.style.top = '0';
+                picture2.style.right = '0';
+                picture2.classList.add(
+                  'img-fluid',
+                  'w-50',
+                  'rounded-top-right'
+                );
+                picture2.src = playlist.tracce[1].immagine;
+                img.appendChild(picture2);
+                const picture3 = document.createElement('img');
+                picture3.style.position = 'absolute';
+                picture3.style.bottom = '0';
+                picture3.style.left = '0';
+                picture3.classList.add(
+                  'img-fluid',
+                  'w-50',
+                  'rounded-bottom-left'
+                );
+                picture3.src = playlist.tracce[2].immagine;
+                img.appendChild(picture3);
+                const picture4 = document.createElement('img');
+                picture4.style.position = 'absolute';
+                picture4.style.bottom = '0';
+                picture4.style.right = '0';
+                picture4.classList.add(
+                  'img-fluid',
+                  'w-50',
+                  'rounded-bottom-right'
+                );
+                picture4.src = playlist.tracce[3].immagine;
+                img.appendChild(picture4);
+              }
+              playlistCard.appendChild(img);
+
+              const cardBody = document.createElement('div');
+              cardBody.classList.add('card-body', 'p-1', 'pt-2', 'pb-0');
+              const title = document.createElement('h5');
+              title.classList.add('card-title', 'text-truncate', 'fw-bold');
+              title.textContent = playlist.titolo;
+              const owner = document.createElement('h6');
+              owner.classList.add(
+                'card-subtitle',
+                'mb-2',
+                'text-secondary',
+                'text-truncate'
+              );
+              owner.textContent = 'Di ' + playlist.creatore;
+              const numeroTracce = document.createElement('p');
+              numeroTracce.classList.add('card-text', 'text-secondary', 'mb-0');
+              numeroTracce.textContent = playlist.tracce.length + ' brani';
+
+              // const followers = document.createElement('p');
+              // followers.classList.add('card-text');
+              // followers.textContent = playlist.followers.length + ' followers';
+              // cardBody.appendChild(followers);
+
+              cardBody.appendChild(title);
+              cardBody.appendChild(owner);
+              //playlistCard.appendChild(numeroTracce);
+              playlistCard.appendChild(cardBody);
+              swiperSlide.appendChild(playlistCard);
+              mySwiperWrapper.appendChild(swiperSlide);
+            });
+          }
+        });
+
+      fetch('/get-favourite-artists')
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === 'ok') {
+            if (data.data.artistiPreferiti.length === 0) {
+              const favArtist = document.querySelector('#fav-artist');
+              favArtist.classList.add('d-none');
+            }
+            const artists = data.data.artistiPreferiti;
+            const mySwiperWrapper = document.querySelector(
+              '#fav-artist .swiper-wrapper'
+            );
+            artists.forEach((artist) => {
+              const swiperSlide = document.createElement('div');
+              swiperSlide.classList.add('swiper-slide');
+              const artistImage = document.createElement('img', 'img-fluid');
+              artistImage.classList.add('img-fluid');
+              artistImage.src = artist.immagine;
+              artistImage.style.borderRadius = '50%';
+              artistImage.style.width = '100px';
+              artistImage.style.height = '100px';
+              artistImage.style.objectFit = 'cover';
+              const artistName = document.createElement('p');
+              artistName.classList.add('text-center', 'mt-2', 'mb-4');
+              artistName.textContent = artist.nome;
+              swiperSlide.appendChild(artistImage);
+              swiperSlide.appendChild(artistName);
+              mySwiperWrapper.appendChild(swiperSlide);
+            });
+          } else {
+            const favArtist = document.querySelector('#fav-artist');
+            console.log(favArtist);
+            favArtist.classList.add('d-none');
+          }
+        });
+
+      fetch('/recommendations')
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === 'ok') {
+            const tracks = data.data.tracks;
+            const mySwiperWrapper = document.querySelector(
+              '#recommendation .swiper-wrapper'
+            );
+            tracks.forEach((track) => {
+              const swiperSlide = document.createElement('div');
+              swiperSlide.classList.add('swiper-slide');
+              const trackCard = document.createElement('div');
+              trackCard.innerHTML = `
+            <div class="t-card card hover mb-4 border-0" style="width: 128px">
+              <img
+                src="${track.album.images[0].url}"
+                class="card-img-top rounded d-flex align-items-center"
+                style="width: 128px; height: 128px">
+              <div class="card-body p-1 pt-2 pb-0">
+                <h5 class="card-title text-truncate fw-bold">${track.name}</h5>
+                <h6 class="card-text m-0 text-truncate text-secondary">${track.artists[0].name}</h6>
+                <p class="track-id d-none">${track.id}</p>
+              </div>
+            </div>
+          `;
+              swiperSlide.appendChild(trackCard);
+              mySwiperWrapper.appendChild(swiperSlide);
+            });
+
+            const trackCards = document.querySelectorAll('.t-card');
+            trackCards.forEach((card) => {
+              card.addEventListener('click', (e) => {
+                const trackId =
+                  e.currentTarget.querySelector('.track-id').textContent;
+                fetch('/get-track/' + trackId)
+                  .then((response) => response.json())
+                  .then((data) => {
+                    if (data.status === 'ok') {
+                      const track = data.data;
+                      console.log(track);
+                      const offcanvasBody = document.querySelector(
+                        '#offcanvasRight .offcanvas-body'
+                      );
+                      const duration = new Date(track.duration_ms);
+                      const minutes = duration.getMinutes();
+                      const seconds = duration.getSeconds();
+                      const secondsString =
+                        seconds < 10 ? '0' + seconds : seconds;
+                      const minutesString =
+                        minutes < 10 ? '0' + minutes : minutes;
+                      const offcanvasTitle = document.querySelector(
+                        '#offcanvasRight .offcanvas-title'
+                      );
+                      const genres = track.genres
+                        .slice(0, 3)
+                        .sort(() => Math.random() - 0.5);
+                      track.genres = genres;
+
+                      offcanvasBody.innerHTML = `
+                      <div class="row">
+                        <div class="col-12">
+                          <img
+                            src="${track.album.images[0].url}"
+                            class="img-fluid d-flex mx-auto justify-content-center"
+                          />
+                        </div>
+                        <div class="col-12">
+                          <h2 class="mt-4">${track.name}</h2>
+                          <h3 class="text-secondary mt-2">${track.artists[0].name}</h3>
+                          <div class="d-flex mt-2">
+                            <i class="fa-solid fa-compact-disc me-1"></i>
+                            <h5 class="m-0 p-0">${track.album.name}&nbsp;(${track.album.release_date})</h5>
+                          </div>
+                          <div class="d-flex mt-2">
+                            <i class="fa-regular fa-clock d-inline me-1"></i>
+                            <h5 class="m-0 p-0">${minutesString}:${secondsString}</h5>
+                          </div>
+                          <p class="d-none track-id">${track.id}</p>
+                          <div class="dropup mt-3" id="playlistDrop">
+                            <button
+                              class="btn btn-custom w-100 mt-4 dropup"
+                              type="button"
+                              id="dropdownMenuButton"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false"
+                              style="font-size: 14px"
+                            >
+                            Aggiungi
+                            </button>
+                            <ul class="dropdown-menu w-100 mb-3" aria-labelledby="dropdownMenuButton">
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      `;
+                      const offcanvasInstance = new bootstrap.Offcanvas(
+                        document.querySelector('#offcanvasRight')
+                      );
+                      offcanvasInstance.show();
+                    }
+                  });
+              });
+            });
+          } else if (data.status === 'error' || data.error) {
+            const recommendation = document.querySelector('#recommendation');
+            fetch('/show-modal')
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.showModal) {
+                  const modal = document.querySelector('.modal');
+                  const modalInstance = new bootstrap.Modal(modal);
+                  modalInstance.show();
+                }
+              });
+            recommendation.innerHTML = `
+            <div class="col-12 p-0">
+              <h2 class="mb-4 p-0 fw-bold">Brani consigliati</h2>
+              <div class="alert" role="alert" style="background-color: #fffcf6; border-color: #f8ebd0; border-width: 2px">
+                <h4 class="alert-heading" style="color: #ff7000">Attenzione!</h4>
+                <p>
+                  Non abbiamo abbastanza dati per poterti offrire dei consigli
+                  personalizzati. Completa il tuo profilo aggiungendo i tuoi
+                  artisti e generi musicali preferiti!
+                </p>
+                <hr />
+                <p class="mb-0">
+                  <a href="/profile" class="alert-link"
+                    >Completa il profilo</a
+                  >
+                </p>
+              </div>
+            </div>
+            `;
+          }
+        });
+    </script>
+  </body>
+</html>
