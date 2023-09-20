@@ -320,12 +320,9 @@
             succes.style.display = 'block';
             succes.textContent = 'Cambiamenti effettuati con successo';
             form.reset();
-            //clear tags
             const tagsContainer = document.getElementById('tags-container');
             tagsContainer.innerHTML = '';
             tagsHidden.value = '[]';
-
-            //update placheholders with new values
             fetch ('/get-playlist/' + id)
             .then((response) => response.json())
             .then((data) => {
