@@ -564,7 +564,13 @@
             const playlists = data.data;
             playlists.forEach((playlist) => {
               const playlistCard = document.createElement('a');
-              playlistCard.classList.add('card', 'mb-4', 'border-0');
+              playlistCard.classList.add(
+                'card',
+                'mb-4',
+                'border-0',
+                'ms-2',
+                'ms-sm-0'
+              );
               playlistCard.style.width = '170px';
               playlistCard.style.height = '170px';
               playlistCard.style.backgroundColor = '#FDFDFD';

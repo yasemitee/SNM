@@ -135,16 +135,18 @@
     </aside>
     <!-- ======= Main ======= -->
     <div class="main" id="main">
-      <div class="page-name mb-3">
+      <div
+        class="page-name mb-3 d-flex flex-column align-items-center align-items-sm-start"
+      >
         <h1 class="mt-4">Le mie playlist</h1>
-        <h2 class="text-secondary">
+        <h2 class="text-secondary text-center">
           Qui puoi trovare le tue playlist e le playlist che hai seguito!
         </h2>
       </div>
-      <div class="cards-container mt-5">
+      <div class="cards-container mt-5 ms-3 ms-sm-0">
         <div class="playlist-cards mt-4 d-flex flex-wrap" id="playlist-cards">
           <a
-            class="card mb-5 me-4 border-0 shadow p-2"
+            class="card mb-5 me-4 me-sm-5 border-0 shadow p-2"
             style="width: 150px; height: 200px; background-color: #fdfdfd"
             href="/createPlaylist"
           >
@@ -169,7 +171,13 @@
             const playlists = data.data;
             playlists.forEach((playlist) => {
               const playlistCard = document.createElement('a');
-              playlistCard.classList.add('card', 'mb-4', 'me-4', 'border-0');
+              playlistCard.classList.add(
+                'card',
+                'mb-4',
+                'me-4',
+                'border-0',
+                'me-sm-5'
+              );
               playlistCard.style.width = '150px';
               playlistCard.style.height = '200px';
               playlistCard.style.backgroundColor = '#FDFDFD';

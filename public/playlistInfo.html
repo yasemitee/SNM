@@ -147,19 +147,19 @@
             <h1 class="playlist-title"></h1>
             <div class="playlist-tags ms-4"></div>
           </div>
-          <div class="d-flex">
+          <div class="d-flex flex-column flex-sm-row mt-2 mt-sm-0">
             <div class="creator d-flex align-items-center">
               <i class="fa-regular fa-user"></i>
               <h4 class="playlist-creator m-0 ms-1"></h4>
             </div>
 
-            <div class="duration d-flex align-items-center">
-              <i class="fa-regular fa-clock ms-4"></i>
+            <div class="duration d-flex align-items-center mt-2 mt-sm-0">
+              <i class="fa-regular fa-clock ms-sm-4"></i>
               <h4 class="playlist-duration m-0 ms-1"></h4>
             </div>
-            <i class="fa-solid fa-lock ms-4 mt-2 d-none"></i>
+            <i class="fa-solid fa-lock ms-sm-4 mt-2 d-none"></i>
             <button
-              class="btn ms-3 d-none"
+              class="btn ms-sm-3 d-none w-25"
               id="follow"
               onclick="followPlaylist()"
             >
@@ -167,14 +167,14 @@
             </button>
 
             <button
-              class="btn ms-3 d-none"
+              class="btn ms-sm-3 d-none w-25"
               id="unfollow"
               onclick="unfollowPlaylist()"
             >
               <i class="fa-solid fa-heart fa-lg" style="color: #ff7000"></i>
             </button>
 
-            <div class="dropdown ms-3 d-none" id="edit">
+            <div class="dropdown ms-sm-3 d-none" id="edit">
               <button
                 class="btn"
                 type="button"
