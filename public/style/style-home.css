@@ -85,10 +85,10 @@ header {
 transform: translateX(-50%)
 }
 
-
 .logo i {
   color: #333;
 }
+
 .logo span {
   letter-spacing: 1px;
   font-size: 26px;
@@ -109,33 +109,6 @@ transform: translateX(-50%)
   padding-left: 10px;
   cursor: pointer;
   color: #333;
-}
-
-.search-bar {
-  min-width: 360px;
-  padding: 0 20px;
-  
-}
-
-@media (max-width: 1199px) {
-  .header .search-bar {
-    position: fixed;
-    top: 50px;
-    left: 0;
-    right: 0;
-    padding: 20px;
-    box-shadow: 0px 0px 15px 0px rgba(1, 41, 112, 0.1);
-    background: white;
-    transition: 0.3s;
-    visibility: hidden;
-    opacity: 0;
-  }
-
-  .search-bar-show {
-    top: 60px;
-    visibility: visible;
-    opacity: 1;
-  }
 }
 
 input, textarea {
@@ -159,24 +132,6 @@ textarea:active {
   outline: none!important;
   box-shadow: 0 0 10px 0 rgba(1, 41, 112, 0.15)!important;
   border: 1px solid rgba(1, 41, 112, 0.3)!important;
-}
-
-.search-form button {
-  border: 0;
-  padding: 0;
-  margin-left: -30px;
-  background: none;
-}
-
-.search-form select {
-  border: 0;
-  padding: 0;
-  margin-left: -110px;
-  background: none;
-}
-
-.search-form button i {
-  color: #333;
 }
 
 .header .dropdown-menu li i {
@@ -287,10 +242,113 @@ textarea:active {
   color: #ff7000;
 }
 
+/* ---- MAIN ---- */
+
 #main {
   margin-top: 60px;
   padding: 20px 30px;
   transition: all 0.3s;
+}
+
+#playlistDrop .dropdown-menu{
+  max-height: 200px;
+  overflow: scroll;
+}
+
+#create-form-container{
+  width: 670px;
+}
+
+@media (max-width: 750px) {
+  #create-form-container{
+    width: 100%;
+  }
+}
+
+@media (max-width: 750px) {
+  
+  .track-album{
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  #inf {
+    width: 50%;
+  }
+
+  #pfr{
+    width: 50%;
+  }
+}
+
+input{
+  box-shadow: 0px 0px 15px 0px rgba(1, 41, 112, 0.1);
+  background: white;
+  transition: 0.3s;
+}
+
+.dropdown-item:hover{
+  background-color: #fffcf6;
+  color: #ff7000;
+  transition: 0.3s;
+}
+
+#track-title-play{
+  max-width: 250px;
+}
+
+@media (max-width: 490px) {
+  #track-title-play{
+    max-width: 170px
+  }
+}
+
+@media (max-width: 800px) {
+  #track-title-play{
+    max-width: 200px
+  }
+}
+
+/* .search-filter .search-form{
+  width: 100%;
+}
+
+#search-artist-track{
+  width: 100%;
+} */
+
+/* ---- UTILITY ---- */
+
+.search-bar {
+  min-width: 360px;
+  padding: 0 20px;
+}
+
+.search-form button {
+  border: 0;
+  padding: 0;
+  margin-left: -35px;
+  background: none;
+}
+
+.search-form button:hover {
+  cursor: default;
+}
+
+.search-form input {
+  padding-left: 12px;
+}
+
+.search-form select {
+  border: 0;
+  padding: 0;
+  margin-left: -110px;
+  background: none;
+}
+
+.search-form button i {
+  color: #333;
 }
 
 .btn-custom {
@@ -368,7 +426,6 @@ div.card {
   background-color: #FEDEBE;
 }
 
-
 .rounded-top-left {
   border-top-left-radius: 0.375rem;;
 }
@@ -380,28 +437,6 @@ div.card {
 }
 .rounded-bottom-right {
   border-bottom-right-radius: 0.375rem;;
-}
-
-#playlistDrop .dropdown-menu{
-  max-height: 200px;
-  overflow: scroll;
-}
-
-#create-form-container{
-  width: 670px;
-}
-
-@media (max-width: 750px) {
-  #create-form-container{
-    width: 100%;
-  }
-}
-
-@media (max-width: 750px) {
-  
-  .track-album{
-    display: none;
-  }
 }
 
 .badge-black{
@@ -435,43 +470,4 @@ div.card {
   transition: 0.3s;
 
 }
-
-@media (min-width: 768px) {
-  #inf {
-    width: 50%;
-  }
-
-  #pfr{
-    width: 50%;
-  }
-}
-
-input{
-  box-shadow: 0px 0px 15px 0px rgba(1, 41, 112, 0.1);
-  background: white;
-  transition: 0.3s;
-}
-
-.dropdown-item:hover{
-  background-color: #fffcf6;
-  color: #ff7000;
-  transition: 0.3s;
-}
-
-#track-title-play{
-  max-width: 250px;
-}
-
-@media (max-width: 490px) {
-  #track-title-play{
-    max-width: 170px
-  }
-}
-
-@media (max-width: 800px) {
-  #track-title-play{
-    max-width: 200px
-  }
-}
-
 

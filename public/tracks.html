@@ -164,24 +164,25 @@
               <input
                 type="text"
                 name="query"
-                placeholder="&nbsp;&nbsp;&nbsp;&#xF002; &nbsp;&nbsp;Inserisci il nome di un brano"
-                style="
-                  font-family: Arial, FontAwesome;
-                  border-radius: 50px;
-                  height: 48px;
-                "
+                placeholder="Inserisci il nome di un brano"
+                style="border-radius: 50px; height: 48px"
               />
+              <button>
+                <i class="bi bi-search"></i>
+              </button>
             </form>
-            <div class="filtri mt-3 d-flex">
+            <div
+              class="filtri mt-3 d-flex flex-column flex-md-row align-items-center align-items-md-start"
+            >
               <button class="btn btn-link d-flex" onclick="toggleFilter()">
                 <i class="bi bi-filter"></i>
                 Filtri avanzati
               </button>
               <div
-                class="search-filter d-flex align-content-center w-75 d-none"
+                class="search-filter d-flex w-75 d-none flex-column flex-md-row"
               >
                 <form
-                  class="search-form d-flex align-items-center w-50 mx-3"
+                  class="search-form d-flex align-items-center mx-md-3 mb-3 mb-md-0 w-75 mx-auto"
                   method="GET"
                   action=""
                   id="search-artist-track"
@@ -189,16 +190,13 @@
                   <input
                     type="text"
                     name="query"
-                    placeholder="&nbsp;&nbsp;&nbsp;&#xF002; &nbsp;&nbsp;Inserisci il cantante di un brano"
-                    style="
-                      font-family: Arial, FontAwesome;
-                      border-radius: 50px;
-                      height: 48px;
-                    "
+                    placeholder="Inserisci il cantante"
+                    style="border-radius: 50px; height: 48px"
                   />
+                  <button><i class="bi bi-search"></i></button>
                 </form>
                 <form
-                  class="search-form d-flex align-items-center w-50"
+                  class="search-form d-flex align-items-center w-75 mx-auto mx-md-0"
                   method="GET"
                   action=""
                   id="search-genre-track"
@@ -206,13 +204,12 @@
                   <input
                     type="text"
                     name="query"
-                    placeholder="&nbsp;&nbsp;&nbsp;&#xF002; &nbsp;&nbsp;Inserisci il genere di un brano"
-                    style="
-                      font-family: Arial, FontAwesome;
-                      border-radius: 50px;
-                      height: 48px;
-                    "
+                    placeholder="Inserisci il genere"
+                    style="border-radius: 50px; height: 48px"
                   />
+                  <button>
+                    <i class="bi bi-search"></i>
+                  </button>
                 </form>
               </div>
             </div>
@@ -295,6 +292,21 @@
           const trackId = e.target.dataset.trackid;
           addTrackToPlaylist(playlistId, trackId);
         }
+      });
+
+      const form1 = document.getElementById('search-form-trucks');
+      form1.addEventListener('submit', (e) => {
+        e.preventDefault();
+      });
+
+      const form2 = document.getElementById('search-artist-track');
+      form2.addEventListener('submit', (e) => {
+        e.preventDefault();
+      });
+
+      const form3 = document.getElementById('search-genre-track');
+      form3.addEventListener('submit', (e) => {
+        e.preventDefault();
       });
 
       const searchForm = document.getElementById('search-form-trucks');

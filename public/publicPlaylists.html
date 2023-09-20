@@ -162,20 +162,23 @@
                 type="text"
                 name="query"
                 placeholder="Inserisci il nome di una playlist"
+                style="border-radius: 50px; height: 48px"
               />
               <button type="submit" title="Search">
                 <i class="bi bi-search"></i>
               </button>
             </form>
-            <div class="filtri mt-3 d-flex">
+            <div
+              class="filtri mt-3 d-flex flex-column flex-md-row align-items-center align-items-md-start"
+            >
               <button class="btn btn-link" onclick="toggleFilter()">
                 Filtri avanzati
               </button>
               <div
-                class="search-filter d-flex align-content-center w-75 d-none"
+                class="search-filter d-flex w-75 d-none flex-column flex-md-row"
               >
                 <form
-                  class="search-form d-flex align-items-center w-50 mx-3"
+                  class="search-form d-flex align-items-center mx-md-3 mb-3 mb-md-0 w-75 mx-auto"
                   method="GET"
                   action=""
                   id="search-tag-playlist"
@@ -184,13 +187,14 @@
                     type="text"
                     name="query"
                     placeholder="Inserisci il tag di una playlist"
+                    style="border-radius: 50px; height: 48px"
                   />
                   <button type="submit" title="Search">
                     <i class="bi bi-search"></i>
                   </button>
                 </form>
                 <form
-                  class="search-form d-flex align-items-center w-50"
+                  class="search-form d-flex align-items-center w-75 mx-auto mx-md-0"
                   method="GET"
                   action=""
                   id="search-track-playlist"
@@ -199,6 +203,7 @@
                     type="text"
                     name="query"
                     placeholder="Inserisci un brano di una playlist"
+                    style="border-radius: 50px; height: 48px"
                   />
                   <button type="submit" title="Search">
                     <i class="bi bi-search"></i>
@@ -343,6 +348,21 @@
         const filter = document.querySelector('.search-filter');
         filter.classList.toggle('d-none');
       }
+
+      const form1 = document.getElementById('search-form-playlist');
+      form1.addEventListener('submit', (e) => {
+        e.preventDefault();
+      });
+
+      const form2 = document.getElementById('search-tag-playlist');
+      form2.addEventListener('submit', (e) => {
+        e.preventDefault();
+      });
+
+      const form3 = document.getElementById('search-track-playlist');
+      form3.addEventListener('submit', (e) => {
+        e.preventDefault();
+      });
 
       const searchForm = document.querySelector('#search-form-playlist');
       searchForm

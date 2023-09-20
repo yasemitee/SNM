@@ -128,7 +128,9 @@
       <div class="playlist-info d-flex mb-3">
         <div>
           <div class="playlist-img me-4"></div>
-          <p class="playlist-followers mt-2 text-secondary"></p>
+          <div class="d-flex">
+            <p class="playlist-followers mt-2 text-secondary"></p>
+          </div>
         </div>
         <div class="playlist-text">
           <div class="playlist-title-tags d-flex">
@@ -145,7 +147,7 @@
               <i class="fa-regular fa-clock ms-4"></i>
               <h4 class="playlist-duration m-0 ms-1"></h4>
             </div>
-
+            <i class="fa-solid fa-lock ms-4 mt-2 d-none"></i>
             <button
               class="btn ms-3 d-none"
               id="follow"
@@ -264,6 +266,9 @@
               } else {
                 followButton.classList.remove('d-none');
               }
+            }
+            if (playlist.èPrivata) {
+              document.querySelector('.fa-lock').classList.remove('d-none');
             }
             const img = document.createElement('div');
             img.classList.add('shadow');

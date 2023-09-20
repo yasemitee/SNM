@@ -239,9 +239,15 @@
         </div>
       </section>
       <div class="my-playlist">
-        <div class="my-4 p-3 pe-0 pt-0">
+        <div class="mt-4 p-3 pe-0 pt-0">
           <h1>Le mie playlist</h1>
-          <div class="cards-container mt-5">
+          <a href="/myPlaylist" class="btn btn-custom mt-2">
+            <span class="text-white">
+              <i class="fa-solid fa-plus"></i>
+              Crea playlist
+            </span>
+          </a>
+          <div class="cards-container mt-4">
             <div
               class="playlist-cards mt-4 d-flex flex-wrap"
               id="playlist-cards"
@@ -652,6 +658,14 @@
         .catch((error) => {
           console.error('Errore nella richiesta delle playlist:', error);
         });
+
+      searchArtist.addEventListener('submit', (e) => {
+        e.preventDefault();
+      });
+
+      searchGenre.addEventListener('submit', (e) => {
+        e.preventDefault();
+      });
     </script>
   </body>
 </html>
