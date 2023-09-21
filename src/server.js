@@ -49,5 +49,4 @@ app.use('/', spotifyRoute);
 
 const utilityRoute = require('./utility/utility.js');
 app.use('/', utilityRoute);
-
-app.listen(3000, () => console.log('Server funzionante'));
+app.listen(process.env.PORT, () => console.log('Server funzionante'));
