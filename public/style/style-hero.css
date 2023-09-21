@@ -106,12 +106,3 @@ body {
     color: #fff;
   }
   
-  #hero .btn-registration {
-    border: 2px solid #fff;
-    color: #fff;
-  }
-  
-  #hero .btn-registration:hover {
-    background: #FF7000;
-    border: 2px solid #FF7000;
-  }

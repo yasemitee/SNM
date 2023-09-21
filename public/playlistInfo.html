@@ -135,6 +135,7 @@
     </aside>
     <!-- ======= Main ======= -->
     <div class="main" id="main">
+      <!-- ======= Playlist main infos ======= -->
       <div class="playlist-info d-flex mb-3">
         <div>
           <div class="playlist-img me-4"></div>
@@ -159,7 +160,7 @@
             </div>
             <i class="fa-solid fa-lock ms-sm-4 mt-2 d-none"></i>
             <button
-              class="btn ms-sm-3 d-none w-25"
+              class="btn ms-sm-3 d-none"
               id="follow"
               onclick="followPlaylist()"
             >
@@ -167,7 +168,7 @@
             </button>
 
             <button
-              class="btn ms-sm-3 d-none w-25"
+              class="btn ms-sm-3 d-none"
               id="unfollow"
               onclick="unfollowPlaylist()"
             >
@@ -352,11 +353,21 @@
             playlist.tracce.forEach((track) => {
               duration += track.durata;
             });
-            console.log(duration);
-            duration = new Date(duration);
-            const hours = duration.getMinutes() / 60;
-            const minutes = duration.getMinutes();
-            const minutesString = minutes < 10 ? '0' + minutes : minutes;
+
+            const hours = duration / 60000 / 60;
+            let minutes = duration / 60000;
+
+            if (minutes % 60 === 0) {
+              minutes = 0;
+            } else {
+              minutes %= 60; //resto della division(minuti rimanenti)
+            }
+
+            let minutesString = Math.floor(minutes);
+            if (minutesString < 10) {
+              minutesString = '0' + minutesString;
+            }
+            console.log(minutesString);
             const hoursRounded = Math.floor(hours);
             playlistDuration.innerText =
               hoursRounded + 'hr ' + minutesString + 'min';

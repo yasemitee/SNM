@@ -14,7 +14,7 @@ router.post('/create-playlist', auth, async (req, res) => {
     return res.status(400).json({ error: 'Titolo non valido' });
   }
   if (!req.body.descrizione) {
-    return res.status(400).json({ error: 'Descrizione non valida' });
+    return res.status(400).json({ error: 'Descrizione non valido' });
   }
 
   if (
@@ -42,8 +42,9 @@ router.post('/create-playlist', auth, async (req, res) => {
       ],
       tracce: [],
     });
-    return res.status(200).json({ status: 'ok' });
+    return res.status(201).json({ status: 'ok' });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ error: 'Errore interno del server' });
   }
 });
@@ -67,21 +68,27 @@ router.patch('/update-playlist/:id', auth, async (req, res) => {
   if (req.body.èPrivata) {
     updateFields.èPrivata = req.body.èPrivata;
   }
+
   try {
     const playlist = await Playlist.findOne({ _id: req.params.id }).lean();
+
     if (!playlist) {
       return res.status(404).json({ error: 'Playlist non trovata' });
     }
+
     if (playlist.creatore !== req.session.username) {
       return res
         .status(401)
         .json({ error: 'Modifica consentita solo al proprietario' });
     }
+
     if (Object.keys(updateFields).length > 0) {
       await Playlist.updateOne({ _id: req.params.id }, { $set: updateFields });
-      return res.status(200).json({ status: 'ok' });
+      return res
+        .status(200)
+        .json({ status: 'Cambiamenti apportati con successo' });
     } else {
-      return res.status(500).json({ error: 'Nessun cambiamento' });
+      return res.status(400).json({ error: 'Nessun cambiamento' });
     }
   } catch (error) {
     console.log(error);
@@ -136,7 +143,6 @@ router.get('/get-created-playlists', auth, async (req, res) => {
       data: playlists,
     });
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ error: 'Errore interno del server' });
   }
 });
@@ -148,6 +154,7 @@ router.get('/get-playlist/:id', auth, async (req, res) => {
   */
   try {
     const playlist = await Playlist.findOne({ _id: req.params.id }).lean();
+
     if (!playlist) {
       return res.status(404).json({ error: 'Playlist non trovata' });
     }
@@ -169,15 +176,19 @@ router.delete('/delete-playlist/:id', auth, async (req, res) => {
   */
   try {
     const playlist = await Playlist.findOne({ _id: req.params.id }).lean();
+
     if (!playlist) {
       return res.status(404).json({ error: 'Playlist non trovata' });
     }
+
     if (playlist.creatore !== req.session.username) {
       return res
         .status(401)
         .json({ error: 'Cancellazione consentita solo al proprietario' });
     }
+
     await Playlist.deleteOne({ _id: req.params.id });
+
     return res.status(200).json({ status: 'ok' });
   } catch (error) {
     return res.status(500).json({ error: 'Errore interno del server' });
@@ -191,8 +202,10 @@ router.post('/add-track-playlist', auth, async (req, res) => {
   */
   const { playlistId } = req.query;
   const { trackId } = req.query;
+
   try {
     const playlist = await Playlist.findOne({ _id: playlistId }).lean();
+
     if (!playlist) {
       return res.status(404).json({ error: 'Playlist non trovata' });
     }
@@ -201,8 +214,10 @@ router.post('/add-track-playlist', auth, async (req, res) => {
         .status(401)
         .json({ error: 'Aggiunta consentita solo al proprietario' });
     }
+
     let { token: spotifyToken } = await Token.findOne({}).lean();
     const track = await spotify.getTrack(trackId, spotifyToken);
+
     if (track.error) {
       spotifyToken = await spotify.refreshToken();
       track = await spotify.getTrack(trackId, spotifyToken);
@@ -211,6 +226,7 @@ router.post('/add-track-playlist', auth, async (req, res) => {
     if (!track) {
       return res.status(404).json({ error: 'Traccia non trovata' });
     }
+
     const trackObj = {
       id: track.id,
       titolo: track.name,
@@ -221,6 +237,7 @@ router.post('/add-track-playlist', auth, async (req, res) => {
       durata: track.duration_ms,
       popolarità: track.popularity,
     };
+
     if (
       await Playlist.findOne({
         _id: playlistId,
@@ -247,8 +264,10 @@ router.delete('/remove-track-playlist', auth, async (req, res) => {
     #swagger.summary = "Rimuove una traccia da una playlist (solo il proprietario)"
   */
   const { playlistId, trackId } = req.body;
+
   try {
     const playlist = await Playlist.findOne({ _id: playlistId }).lean();
+
     if (!playlist) {
       return res.status(404).json({ error: 'Playlist non trovata' });
     }
@@ -257,6 +276,7 @@ router.delete('/remove-track-playlist', auth, async (req, res) => {
         .status(401)
         .json({ error: 'Rimozione consentita solo al proprietario' });
     }
+
     await Playlist.updateOne(
       { _id: playlistId },
       { $pull: { tracce: { id: trackId } } }
@@ -275,12 +295,15 @@ router.get('/get-playlist-tracks/:id', auth, async (req, res) => {
     #swagger.summary = "Restituisce le tracce di una playlist"
   */
   let { token: spotifyToken } = await Token.findOne({}).lean();
+
   try {
     const playlist = await Playlist.findOne({ _id: req.params.id }).lean();
     if (!playlist) {
       return res.status(404).json({ error: 'Playlist non trovata' });
     }
+
     const tracks = await spotify.getTracks(playlist.tracks, spotifyToken);
+
     if (tracks.error) {
       spotifyToken = await spotify.refreshToken();
       tracks = await spotify.getTracks(playlist.tracks, spotifyToken);
@@ -299,9 +322,11 @@ router.post('/follow-playlist/:id', auth, async (req, res) => {
   */
   try {
     const playlist = await Playlist.findOne({ _id: req.params.id }).lean();
+
     if (!playlist) {
       return res.status(404).json({ error: 'Playlist non trovata' });
     }
+
     if (
       await Playlist.findOne({
         _id: req.params.id,

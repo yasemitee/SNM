@@ -131,9 +131,11 @@ router.get('/recommendations', auth, async (req, res) => {
     #swagger.summary = "Restituisce le raccomandazioni per l'utente in base ai suoi generi e artisti preferiti"
   */
   const user = await User.findOne({ _id: req.session.userId }).lean();
+
   if (!user) {
     return res.status(404).json({ error: 'Utente non trovato' });
   }
+
   const genres = user.generiPreferiti;
   const artists = user.artistiPreferiti;
 
@@ -146,6 +148,7 @@ router.get('/recommendations', auth, async (req, res) => {
 
   if (genres.length + artists.length >= 5) {
     while (newGenres.length + newArtists.length < 5) {
+      //il massimo di seed è 5
       const random = Math.floor(Math.random() * 2);
       if (random === 0) {
         const randomGenre = genres[Math.floor(Math.random() * genres.length)];
@@ -223,7 +226,9 @@ router.get('/recommendations-genre', auth, async (req, res) => {
     if (!raccomandationsR.tracks) {
       return res.status(404).json({ error: 'Raccomandazioni non trovate' });
     }
-    return res.status(200).json({ status: 'ok', data: raccomandationsR });
+    return res
+      .status(200)
+      .json({ status: 'Raccomandazioni generate', data: raccomandationsR });
   } catch (error) {
     return res.status(500).json({ error: 'Errore interno del server' });
   }

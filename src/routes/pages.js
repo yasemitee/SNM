@@ -20,6 +20,7 @@ router.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/login');
 });
+
 router.get('/myPlaylist', auth, (req, res) => {
   res.sendFile(__dirname + '/public/myPlaylist.html');
 });

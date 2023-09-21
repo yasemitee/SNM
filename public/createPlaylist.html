@@ -144,6 +144,7 @@
         </h1>
       </div>
       <div class="m-auto my-4 p-3 border-0" id="create-form-container">
+        <!-- ======= Form ======= -->
         <form action="" method="POST" id="create-form">
           <label for="nome" class="form-label">Titolo</label>
           <input
@@ -284,7 +285,7 @@
               'Content-Type': 'application/json',
             },
           });
-          if (response.status === 200) {
+          if (response.status === 201) {
             alert.style.display = 'none';
             succes.style.display = 'block';
             succes.textContent = 'Playlist creata con successo';

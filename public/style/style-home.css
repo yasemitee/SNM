@@ -35,6 +35,8 @@ a:hover {
   text-decoration: none;
 }
 
+/* ---- TEXT DIM ---- */
+
 h1{
   font-size: 24px;
   font-weight: 600;
@@ -468,6 +470,22 @@ div.card {
   background-color: #FF8303;
   color: #fff;
   transition: 0.3s;
-
 }
+
+
+@media (max-width: 576px) {
+  #follow, #unfollow{
+    width: 25%;
+    margin-left: -12px;
+  }
+}
+
+@media (max-width: 576px) {
+   #edit{
+    width: 25%;
+    margin-left: -12px;
+  }
+}
+
+  
 

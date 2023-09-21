@@ -35,6 +35,13 @@ router.post('/registrazione', async (req, res) => {
     });
   }
 
+  if (!/\d/.test(plainTextPassword)) {
+    return res.status(400).json({
+      status: 'error',
+      error: 'La password deve contenere almeno un numero',
+    });
+  }
+
   if (!username || typeof username !== 'string') {
     return res
       .status(400)
@@ -67,11 +74,13 @@ router.post('/registrazione', async (req, res) => {
       email,
       password,
     });
-    console.log('Utente creato con successo: ', risultato);
-    return res.status(200).json({ status: 'ok' });
+
+    console.log('Nuovo utente: ', risultato);
+    return res.status(201).json({ status: 'ok' });
   } catch (err) {
     console.error(err.message);
     if (err.code === 11000) {
+      // errore di duplicazione di mongo
       return res.status(400).json({
         status: 'error',
         error: 'Username o email già in uso',
@@ -129,10 +138,11 @@ router.delete('/detete-account', auth, async (req, res) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     console.log(decoded.id);
+
     const playlistsSeguite = await Playlist.find({
       followers: { $elemMatch: { userId: decoded.id } },
     }).lean();
-    console.log(playlistsSeguite);
+
     for (let i = 0; i < playlistsSeguite.length; i++) {
       await Playlist.updateOne(
         { _id: playlistsSeguite[i]._id },
@@ -143,6 +153,7 @@ router.delete('/detete-account', auth, async (req, res) => {
     const playlists = await Playlist.find({
       creatore: decoded.username,
     }).lean();
+
     for (let i = 0; i < playlists.length; i++) {
       await Playlist.deleteOne({ _id: playlists[i]._id });
     }
@@ -180,6 +191,7 @@ router.post('/add-favourite-artist', auth, async (req, res) => {
     #swagger.summary = "Aggiunge un artista ai preferiti dell'utente"
   */
   const { artistId } = req.query;
+
   try {
     let { token: spotifyToken } = await Token.findOne({}).lean();
     const artist = await spotify.getArtist(artistId, spotifyToken);
@@ -187,17 +199,22 @@ router.post('/add-favourite-artist', auth, async (req, res) => {
       spotifyToken = await spotify.refreshToken();
       artist = await spotify.getArtist(artistId, spotifyToken);
     }
+
     if (!artist) {
       return res.status(404).json({ error: 'Artista non trovato' });
     }
+
     if (
       await User.findOne({
         _id: req.session.userId,
         artistiPreferiti: { $elemMatch: { id: artist.id } },
       })
     ) {
-      return res.status(400).json({ error: 'Artista già presente' });
+      return res
+        .status(400)
+        .json({ error: 'Artista già presente tra i preferiti' });
     }
+
     await User.updateOne(
       { _id: req.session.userId },
       {
@@ -258,6 +275,7 @@ router.post('/add-favourite-genre', auth, async (req, res) => {
     #swagger.summary = "Aggiunge un genere ai preferiti dell'utente"
   */
   const { genre } = req.query;
+
   try {
     await User.updateOne(
       { _id: req.session.userId },
@@ -321,16 +339,13 @@ router.patch('/update-user-info', auth, async (req, res) => {
     if (req.body.username) {
       updateFields.username = req.body.username;
     }
-
     if (req.body.password) {
       const password = await bycrypt.hash(req.body.password, 10);
       updateFields.password = password;
     }
-
     if (req.body.nome) {
       updateFields.nome = req.body.nome;
     }
-
     if (req.body.cognome) {
       updateFields.cognome = req.body.cognome;
     }

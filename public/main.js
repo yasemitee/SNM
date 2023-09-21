@@ -1,3 +1,4 @@
+//utility functions (non sono usate in questo progetto ma potrebbero tornare utili in futuro)
 const select = (el, all = false) => {
   el = el.trim();
   if (all) {
@@ -19,12 +20,14 @@ const onscroll = (el, listener) => {
   el.addEventListener('scroll', listener);
 };
 
+// Toggle sidebar
 if (select('.toggle-sidebar-btn')) {
   on('click', '.toggle-sidebar-btn', function (e) {
     select('body').classList.toggle('toggle-sidebar');
   });
 }
 
+// Mette il nome utente e il nominativo nell'header di ogni pagina
 (async () => {
   const usernameHeader = document.getElementById('usernameHeader');
   const nominativoHeader = document.getElementById('nominativoHeader');
