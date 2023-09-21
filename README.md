@@ -2,11 +2,15 @@
 
 > Relazione del progetto "Social Network for Music" per il corso "Programmazione e linguaggi per il web" (a.a. 2022-2023).
 
+> _Realizzata da: Yassine Gourram
+> Matricola: 01796A_
+
 ## Indice
 
 - [Avvio del sito](#avvio-del-sito)
 - [Struttura del sito web](#struttura-del-sito-web)
   - [Swagger](#swagger)
+- [Operazioni richieste](#operazioni-richieste)
 - [Scelte implementative](#scelte-implementative)
   - [Gestione delle sessioni e autenticazione](#gestione-delle-sessioni-e-autenticazione)
   - [Interazione con l’API di Spotify](#interazione-con-l'api-di-spotify)
@@ -17,27 +21,46 @@
 
 Una volta scaricato o clonato il codice sorgente sarà necessario:
 
-- Scaricare i moduli e dipendenze (node_modules)
-- Aggiungere un file .env nella main directory che conterrà:
-  - DATABASE_URL
-  - JWT_SECRET
-  - CLIENT_ID (Spotify API)
-  - CLIENT_SECRET (Spotify API)
-- Avviare il server
-  > Se si scarica come dipendenza anche _nodemon_ si può utilizzare `npm start`
+- Scaricare i moduli e dipendenze (node_modules).
 
-Una volta seguiti i vari passi sarà possibile accedere al sito all'indirizzo (dev) **[http://localhost:3000/](http://localhost:3000/)**.
+```bash
+npm install
+```
+
+- Aggiungere un file .env nella main directory che conterrà:
+
+```env
+    DATABASE_URL =
+    JWT_SECRET =
+    #(Spotify API)
+    CLIENT_ID =
+    CLIENT_SECRET =
+    PORT =
+```
+
+- Avviare il server.
+
+```bash
+node src/server.js
+```
+
+> Se si scarica come dipendenza anche _nodemon_ si può utilizzare `npm start`
+
+Una volta seguiti i vari passi sarà possibile accedere al sito all'indirizzo. (per poter utilizzare i link presenti nella guida si suggerisce la porta 3000).
+**[http://localhost:3000](http://localhost:3000/)**.
 
 ## Struttura del sito web
 
-La struttura è composta da una sezione dedicata al **frontend** `public`:
+La struttura del sito è composta in due sezioni principali:
+
+Sezione dedicata al **frontend** `public`:
 
 - Le pagine `.html` .
 - `style` cartella contenente i file `.css`.
 - `img` contiene le immagini utilizzate per il sito.
 - `main.js` uno script comune a tutte le pagine (comportamenti "visivi" che tutte le pagine hanno in comune).
 
-Sezione dedicata al backend `src`:
+Sezione dedicata al **backend** `src`:
 
 - `server.js`: server principale per il funzionamento del server (node.js - express)
 - **config**
@@ -60,8 +83,13 @@ Sezione dedicata al backend `src`:
 
 ### Swagger
 
+L'API dell'applicazione segue i principi **REST** e la sua documentazione è reperibile attraverso uno **Swagger**.
 Per accedere allo swagger basta recarsi all'indirizzo **[http://localhost:3000/api-docs/](http://localhost:3000/api-docs/)**.
-Il rebuild dello swagger può essere effettuato con il comando (da linea di comando) `npm run swagger`.
+Il rebuild dello swagger può essere effettuato con il comando:
+
+```bash
+npm run swagger
+```
 
 ## Scelte implementative
 
@@ -106,6 +134,8 @@ const auth = (req, res, next) => {
 module.exports = auth;
 ```
 
+> express-session è utilizzato per gestire l'autenticazione e le sessioni (principalmente le variabili di sessione) degli utenti durante la navigazione nel sito web, mentre JWT viene utilizzato per autenticare le richieste API in maniera più sicura. Le due tecnologie quindi hanno mansioni diverse ma sono utilizzate in modo complementare. Questa è una scelta comune per avere un maggiore controllo e scalabilità del server.
+
 ### Interazione con l'API di Spotify
 
 Tutta la logica che riguarda le chiamate e il parse dei dati ricevuti da Spotify avviene nel file `utility/spotify-api-calls.js` che funge come interfaccia.
@@ -147,7 +177,7 @@ L'API di Spotify non consente di avere il genere musicale delle tracce, l'unico 
 
 - Alcuni artisti non hanno generi musicali associati.
 - Alcuni artisti hanno numerosi generi musicali associati.
-- Qual'ora l'artista avesse più generi musicali non è possibile associare correttamente un sottoinsieme di generi alla traccia.
+- Qualora l'artista avesse più generi musicali non è possibile associare correttamente un sottoinsieme di generi alla traccia.
 
 Considerando tutte queste problematiche è stato deciso di omettere l'informazione dei generi nelle info della traccia, dato che sarebbe stata un informazione approssimativa.
 Tuttavia è stata comunque implementata la funzionalità di ricerca di un brano in base al genere attraverso l'endpoint `/recommendations` ( impostando come seed il genere interessato ).
