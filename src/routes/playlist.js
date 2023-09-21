@@ -197,7 +197,7 @@ router.delete('/delete/:id', auth, async (req, res) => {
 
 router.post('/add-track', auth, async (req, res) => {
   /*
-    #swagger.tags = ["Playlist track  "]
+    #swagger.tags = ["Playlist track"]
     #swagger.summary = "Aggiunge una traccia ad una playlist (solo il proprietario)"
   */
   const { playlistId } = req.query;

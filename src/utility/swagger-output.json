@@ -654,7 +654,7 @@
     "/api/playlist/add-track": {
       "post": {
         "tags": [
-          "Playlist track "
+          "Playlist track"
         ],
         "summary": "Aggiunge una traccia ad una playlist (solo il proprietario)",
         "description": "",
