@@ -2,9 +2,8 @@
 
 > Relazione del progetto "Social Network for Music" per il corso "Programmazione e linguaggi per il web" (a.a. 2022-2023).
 
-> \*Realizzata da: Yassine Gourram
-
-> Matricola: 01796A\*
+> Realizzata da: Yassine Gourram\
+> Matricola: 01796A
 
 ## Indice
 
