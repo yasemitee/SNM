@@ -298,6 +298,13 @@
           email,
           password,
         };
+
+        if (!nome && !cognome && !username && !email && !password) {
+          alert.style.display = 'block';
+          alert.innerHTML = 'Non è stato inserito nessun cambiamento';
+          success.style.display = 'none';
+          return;
+        }
         fetch('/api/user/edit', {
           method: 'PATCH',
           headers: {

@@ -11,7 +11,7 @@ router.use((req, _res, next) => {
 router.get('/show-modal', async (req, res) => {
   /*
     #swagger.tags = ["Utility"]
-    #swagger.summary = "Mostra il modal di benvenuto se non è stato mostrato in precedenza (si resetta quando si chiude la sessione)"
+    #swagger.summary = "Mostra il modal per il completamento del profilo se non è stato completato il profilo (con le preferenze musicali)"
   */
   console.log(req.session);
   if (!req.session.modalShown) {
