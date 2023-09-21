@@ -10,7 +10,6 @@
 - [Avvio del sito](#avvio-del-sito)
 - [Struttura del sito web](#struttura-del-sito-web)
   - [Swagger](#swagger)
-- [Operazioni richieste](#operazioni-richieste)
 - [Scelte implementative](#scelte-implementative)
   - [Gestione delle sessioni e autenticazione](#gestione-delle-sessioni-e-autenticazione)
   - [Interazione con l’API di Spotify](#interazione-con-l'api-di-spotify)
