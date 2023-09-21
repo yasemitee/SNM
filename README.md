@@ -12,7 +12,7 @@
   - [Swagger](#swagger)
 - [Scelte implementative](#scelte-implementative)
   - [Gestione delle sessioni e autenticazione](#gestione-delle-sessioni-e-autenticazione)
-  - [Interazione con Spotify (API)](<#interazione-con-spotify-(api)->)
+  - [Interazione con Spotify API](#interazione-con-spotify-api)
     - [Generi delle tracce](#generi-delle-tracce)
 - [Dipendenze](#dipendenze)
 
@@ -135,7 +135,7 @@ module.exports = auth;
 
 > express-session è utilizzato per gestire l'autenticazione e le sessioni (principalmente le variabili di sessione) degli utenti durante la navigazione nel sito web, mentre JWT viene utilizzato per autenticare le richieste API in maniera più sicura. Le due tecnologie quindi hanno mansioni diverse ma sono utilizzate in modo complementare. Questa è una scelta comune per avere un maggiore controllo e scalabilità del server.
 
-### Interazione con Spotify (API)
+### Interazione con Spotify API
 
 Tutta la logica che riguarda le chiamate e il parse dei dati ricevuti da Spotify avviene nel file `utility/spotify-api-calls.js` che funge come interfaccia.
 Per interagire con l'API di Spotify è necessario avere (oltre al `CLIENT ID` e `CLIENT_SECRET`) un access_token, a questo proposito ho implementato una funzione che mi consente di rinnovare il token e salvarlo nel database.
