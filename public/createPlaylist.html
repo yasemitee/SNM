@@ -278,7 +278,7 @@
         privateCheckbox.value = isPrivate.toString();
         formData.append('èPrivata', privateCheckbox.value);
         try {
-          const response = await fetch('/create-playlist', {
+          const response = await fetch('/api/playlist/create', {
             method: 'POST',
             body: JSON.stringify(Object.fromEntries(formData)),
             headers: {

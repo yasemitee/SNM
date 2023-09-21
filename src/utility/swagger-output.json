@@ -39,38 +39,6 @@
             "description": "OK"
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Auth"
-        ],
-        "summary": "Login di un utente già registrato (genera un token JWT valido per 12 ore ) ",
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "username": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
       }
     },
     "/logout": {
@@ -179,7 +147,7 @@
         }
       }
     },
-    "/registrazione": {
+    "/api/user/register": {
       "post": {
         "tags": [
           "Auth"
@@ -213,6 +181,40 @@
           }
         ],
         "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/user/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login di un utente già registrato (genera un token JWT valido per 12 ore ) ",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
           "200": {
             "description": "OK"
           },
@@ -222,7 +224,7 @@
         }
       }
     },
-    "/detete-account": {
+    "/api/user/detete": {
       "delete": {
         "tags": [
           "User"
@@ -239,7 +241,7 @@
         }
       }
     },
-    "/get-user-info": {
+    "/api/user/info": {
       "get": {
         "tags": [
           "User"
@@ -259,7 +261,7 @@
         }
       }
     },
-    "/add-favourite-artist": {
+    "/api/user/add-artist": {
       "post": {
         "tags": [
           "User favourite"
@@ -289,7 +291,7 @@
         }
       }
     },
-    "/get-favourite-artists": {
+    "/api/user/get-artists": {
       "get": {
         "tags": [
           "User favourite"
@@ -306,7 +308,7 @@
         }
       }
     },
-    "/remove-favourite-artist": {
+    "/api/user/remove-artist": {
       "delete": {
         "tags": [
           "User favourite"
@@ -330,7 +332,7 @@
         }
       }
     },
-    "/add-favourite-genre": {
+    "/api/user/add-genre": {
       "post": {
         "tags": [
           "User favourite"
@@ -354,7 +356,7 @@
         }
       }
     },
-    "/get-favourite-genres": {
+    "/api/user/get-genres": {
       "get": {
         "tags": [
           "User favourite"
@@ -371,7 +373,7 @@
         }
       }
     },
-    "/remove-favourite-genre": {
+    "/api/user/remove-genre": {
       "delete": {
         "tags": [
           "User favourite"
@@ -395,7 +397,7 @@
         }
       }
     },
-    "/update-user-info": {
+    "/api/user/edit": {
       "patch": {
         "tags": [
           "User"
@@ -432,13 +434,16 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         }
       }
     },
-    "/create-playlist": {
+    "/api/playlist/create": {
       "post": {
         "tags": [
           "Playlist"
@@ -469,8 +474,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created"
           },
           "400": {
             "description": "Bad Request"
@@ -481,7 +486,7 @@
         }
       }
     },
-    "/update-playlist/{id}": {
+    "/api/playlist/edit/{id}": {
       "patch": {
         "tags": [
           "Playlist"
@@ -521,6 +526,9 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "401": {
             "description": "Unauthorized"
           },
@@ -533,7 +541,7 @@
         }
       }
     },
-    "/get-playlists-public": {
+    "/api/playlist/get-playlists-public": {
       "get": {
         "tags": [
           "Playlist"
@@ -550,7 +558,7 @@
         }
       }
     },
-    "/get-my-playlists": {
+    "/api/playlist/get-my-playlists": {
       "get": {
         "tags": [
           "Playlist"
@@ -567,7 +575,7 @@
         }
       }
     },
-    "/get-created-playlists": {
+    "/api/playlist/get-created-playlists": {
       "get": {
         "tags": [
           "Playlist"
@@ -584,7 +592,7 @@
         }
       }
     },
-    "/get-playlist/{id}": {
+    "/api/playlist/{id}": {
       "get": {
         "tags": [
           "Playlist"
@@ -612,7 +620,7 @@
         }
       }
     },
-    "/delete-playlist/{id}": {
+    "/api/playlist/delete/{id}": {
       "delete": {
         "tags": [
           "Playlist"
@@ -643,7 +651,7 @@
         }
       }
     },
-    "/add-track-playlist": {
+    "/api/playlist/add-track": {
       "post": {
         "tags": [
           "Playlist track "
@@ -681,7 +689,7 @@
         }
       }
     },
-    "/remove-track-playlist": {
+    "/api/playlist/remove-track": {
       "delete": {
         "tags": [
           "Playlist track"
@@ -721,35 +729,7 @@
         }
       }
     },
-    "/get-playlist-tracks/{id}": {
-      "get": {
-        "tags": [
-          "Playlist track"
-        ],
-        "summary": "Restituisce le tracce di una playlist",
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/follow-playlist/{id}": {
+    "/api/playlist/follow/{id}": {
       "post": {
         "tags": [
           "Social network interaction"
@@ -780,7 +760,7 @@
         }
       }
     },
-    "/unfollow-playlist/{id}": {
+    "/api/playlist/unfollow/{id}": {
       "delete": {
         "tags": [
           "Social network interaction"
@@ -808,7 +788,7 @@
         }
       }
     },
-    "/search-tracks": {
+    "/api/spotify/search-tracks": {
       "get": {
         "tags": [
           "Spotify"
@@ -835,7 +815,7 @@
         }
       }
     },
-    "/get-track/{id}": {
+    "/api/spotify/get-track/{id}": {
       "get": {
         "tags": [
           "Spotify"
@@ -863,7 +843,7 @@
         }
       }
     },
-    "/search-artist": {
+    "/api/spotify/search-artist": {
       "get": {
         "tags": [
           "Spotify"
@@ -890,7 +870,7 @@
         }
       }
     },
-    "/get-artist-tracks": {
+    "/api/spotify/get-artist-tracks": {
       "get": {
         "tags": [
           "Spotify"
@@ -917,7 +897,7 @@
         }
       }
     },
-    "/get-available-genres": {
+    "/api/spotify/get-available-genres": {
       "get": {
         "tags": [
           "Spotify"
@@ -934,7 +914,7 @@
         }
       }
     },
-    "/recommendations": {
+    "/api/spotify/recommendations": {
       "get": {
         "tags": [
           "Spotify"
@@ -957,7 +937,7 @@
         }
       }
     },
-    "/recommendations-genre": {
+    "/api/spotify/recommendations-genre": {
       "get": {
         "tags": [
           "Spotify"

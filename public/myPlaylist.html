@@ -165,7 +165,7 @@
     <script>
       const playlistCards = document.getElementById('playlist-cards');
 
-      fetch('/get-my-playlists')
+      fetch('/api/playlist/get-my-playlists')
         .then((response) => response.json())
         .then((data) => {
           if (data.status === 'ok') {

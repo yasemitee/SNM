@@ -131,9 +131,9 @@
     <!-- ======= Main ======= -->
     <div class="main" id="main">
       <div class="page-name mb-3">
-        <button class="btn btn-custom" onclick="window.history.back()">
+        <a class="btn btn-custom" onclick="goBack()">
           <i class="fa-solid fa-arrow-left fa-lg"></i>
-        </button>
+        </a>
         <h1 class="text-center mt-4">
           Completa con i cambiamenti che vuoi apportare alla playlist
         </h1>
@@ -217,7 +217,11 @@
     <script>
 
       const id = window.location.href.split('/').pop();
-      fetch('/get-playlist/' + id)
+
+      function goBack() {
+        window.location.href = '/playlist/' + id;
+      }
+      fetch('/api/playlist/' + id)
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
@@ -317,7 +321,7 @@
         formData.append('èPrivata', privateCheckbox.value);
         try {
           const response = await fetch(
-            '/update-playlist/' + id,
+            '/api/playlist/edit/' + id,
             {
               method: 'PATCH',
               body: JSON.stringify(Object.fromEntries(formData)),
@@ -334,7 +338,7 @@
             const tagsContainer = document.getElementById('tags-container');
             tagsContainer.innerHTML = '';
             tagsHidden.value = '[]';
-            fetch ('/get-playlist/' + id)
+            fetch ('/api/playlist/' + id)
             .then((response) => response.json())
             .then((data) => {
               console.log(data);

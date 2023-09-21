@@ -33,17 +33,17 @@ app.use('/', pagesRoute);
 //----------- USER PROFILE ENDPOINTS -------------
 
 const userRoute = require('./routes/user.js');
-app.use('/', userRoute);
+app.use('/api/user', userRoute);
 
 //----------- PLAYLIST ENDPOINTS -------------
 
 const playlistRoute = require('./routes/playlist.js');
-app.use('/', playlistRoute);
+app.use('/api/playlist', playlistRoute);
 
 //----------- SPOTIFY ENDPOINTS -------------
 
 const spotifyRoute = require('./routes/spotify.js');
-app.use('/', spotifyRoute);
+app.use('/api/spotify', spotifyRoute);
 
 //----------- UTILITY ROUTES -------------
 

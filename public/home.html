@@ -237,7 +237,7 @@
     <script src="./main.js"></script>
     <script>
       let userPlaylists = [];
-      fetch('/get-created-playlists')
+      fetch('/api/playlist/get-created-playlists')
         .then((response) => response.json())
         .then((data) => {
           if (data.status === 'ok') {
@@ -285,7 +285,7 @@
 
       const addTrackToPlaylist = async (playlistId, trackId) => {
         const response = await fetch(
-          `/add-track-playlist?playlistId=${playlistId}&trackId=${trackId}`,
+          `/api/playlist/add-track?playlistId=${playlistId}&trackId=${trackId}`,
           {
             method: 'POST',
           }
@@ -302,7 +302,7 @@
         }
       });
 
-      fetch('/get-user-info')
+      fetch('/api/user/info')
         .then((response) => response.json())
         .then((data) => {
           if (data.status === 'ok') {
@@ -362,7 +362,7 @@
         },
       });
 
-      fetch('/get-playlists-public')
+      fetch('/api/playlist/get-playlists-public')
         .then((response) => response.json())
         .then((data) => {
           if (data.status === 'ok') {
@@ -486,7 +486,7 @@
           }
         });
 
-      fetch('/get-favourite-artists')
+      fetch('/api/user/get-artists')
         .then((response) => response.json())
         .then((data) => {
           if (data.status === 'ok') {
@@ -522,7 +522,7 @@
           }
         });
 
-      fetch('/recommendations')
+      fetch('/api/spotify/recommendations')
         .then((response) => response.json())
         .then((data) => {
           if (data.status === 'ok') {
@@ -556,7 +556,7 @@
               card.addEventListener('click', (e) => {
                 const trackId =
                   e.currentTarget.querySelector('.track-id').textContent;
-                fetch('/get-track/' + trackId)
+                fetch('/api/spotify/get-track/' + trackId)
                   .then((response) => response.json())
                   .then((data) => {
                     if (data.status === 'ok') {

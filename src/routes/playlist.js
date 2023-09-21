@@ -5,7 +5,7 @@ const Playlist = require('../models/playlist.js');
 const spotify = require('../utility/spotify-api-calls.js');
 const Token = require('../models/spotifyToken.js');
 
-router.post('/create-playlist', auth, async (req, res) => {
+router.post('/create', auth, async (req, res) => {
   /*
     #swagger.tags = ["Playlist"]
     #swagger.summary = "Creazione di una nuova playlist"
@@ -49,7 +49,7 @@ router.post('/create-playlist', auth, async (req, res) => {
   }
 });
 
-router.patch('/update-playlist/:id', auth, async (req, res) => {
+router.patch('/edit/:id', auth, async (req, res) => {
   /*
     #swagger.tags = ["Playlist"]
     #swagger.summary = "Modifica di una playlist"
@@ -147,7 +147,7 @@ router.get('/get-created-playlists', auth, async (req, res) => {
   }
 });
 
-router.get('/get-playlist/:id', auth, async (req, res) => {
+router.get('/:id', auth, async (req, res) => {
   /*
     #swagger.tags = ["Playlist"]
     #swagger.summary = "Restituisce le informazioni riguardanti una playlist"
@@ -169,7 +169,7 @@ router.get('/get-playlist/:id', auth, async (req, res) => {
   }
 });
 
-router.delete('/delete-playlist/:id', auth, async (req, res) => {
+router.delete('/delete/:id', auth, async (req, res) => {
   /*
     #swagger.tags = ["Playlist"]
     #swagger.summary = "Elimina una playlist (solo il proprietario)"
@@ -195,7 +195,7 @@ router.delete('/delete-playlist/:id', auth, async (req, res) => {
   }
 });
 
-router.post('/add-track-playlist', auth, async (req, res) => {
+router.post('/add-track', auth, async (req, res) => {
   /*
     #swagger.tags = ["Playlist track  "]
     #swagger.summary = "Aggiunge una traccia ad una playlist (solo il proprietario)"
@@ -258,7 +258,7 @@ router.post('/add-track-playlist', auth, async (req, res) => {
   }
 });
 
-router.delete('/remove-track-playlist', auth, async (req, res) => {
+router.delete('/remove-track', auth, async (req, res) => {
   /*
     #swagger.tags = ["Playlist track"]
     #swagger.summary = "Rimuove una traccia da una playlist (solo il proprietario)"
@@ -289,33 +289,7 @@ router.delete('/remove-track-playlist', auth, async (req, res) => {
   }
 });
 
-router.get('/get-playlist-tracks/:id', auth, async (req, res) => {
-  /*
-    #swagger.tags = ["Playlist track"]
-    #swagger.summary = "Restituisce le tracce di una playlist"
-  */
-  let { token: spotifyToken } = await Token.findOne({}).lean();
-
-  try {
-    const playlist = await Playlist.findOne({ _id: req.params.id }).lean();
-    if (!playlist) {
-      return res.status(404).json({ error: 'Playlist non trovata' });
-    }
-
-    const tracks = await spotify.getTracks(playlist.tracks, spotifyToken);
-
-    if (tracks.error) {
-      spotifyToken = await spotify.refreshToken();
-      tracks = await spotify.getTracks(playlist.tracks, spotifyToken);
-    }
-    return res.status(200).json({ status: 'ok', data: tracks });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ error: 'Errore interno del server' });
-  }
-});
-
-router.post('/follow-playlist/:id', auth, async (req, res) => {
+router.post('/follow/:id', auth, async (req, res) => {
   /*
     #swagger.tags = ["Social network interaction"]
     #swagger.summary = "Permette di seguire una playlist"
@@ -354,7 +328,7 @@ router.post('/follow-playlist/:id', auth, async (req, res) => {
   }
 });
 
-router.delete('/unfollow-playlist/:id', auth, async (req, res) => {
+router.delete('/unfollow/:id', auth, async (req, res) => {
   /*
     #swagger.tags = ["Social network interaction"]
     #swagger.summary = "Permette di smettere di seguire una playlist"

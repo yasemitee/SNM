@@ -277,7 +277,7 @@
         const username = document.getElementById('username');
         const email = document.getElementById('email');
         try {
-          const response = await fetch('/get-user-info', {
+          const response = await fetch('/api/user/info', {
             method: 'GET',
           });
           if (response.ok) {
@@ -304,7 +304,9 @@
 
           if (query.length > 1) {
             try {
-              const response = await fetch(`/search-artist?artist=${query}`);
+              const response = await fetch(
+                `/api/spotify/search-artist?artist=${query}`
+              );
               const data = await response.json();
               const artists = data.data;
               artistDropdown.innerHTML = '';
@@ -365,7 +367,7 @@
           const artistId = e.target.dataset.id;
           try {
             const response = await fetch(
-              `/add-favourite-artist?artistId=${artistId}`,
+              `/api/user/add-artist?artistId=${artistId}`,
               {
                 method: 'POST',
               }
@@ -385,7 +387,7 @@
 
       (async () => {
         try {
-          const response = await fetch('/get-favourite-artists', {
+          const response = await fetch('/api/user/get-artists', {
             method: 'GET',
           });
           if (response.ok) {
@@ -407,7 +409,7 @@
               removeBtn.addEventListener('click', async () => {
                 try {
                   const response = await fetch(
-                    `/remove-favourite-artist?artistId=${artist.id}`,
+                    `/api/user/remove-artist?artistId=${artist.id}`,
                     {
                       method: 'DELETE',
                     }
@@ -434,7 +436,7 @@
       const searchGenre = document.querySelector('.fav-genre .search-form');
       (async () => {
         try {
-          const response = await fetch('/get-available-genres', {
+          const response = await fetch('/api/spotify/get-available-genres', {
             method: 'GET',
           });
           if (response.ok) {
@@ -474,12 +476,9 @@
         if (e.target.classList.contains('dropdown-item')) {
           const genre = e.target.innerText;
           try {
-            const response = await fetch(
-              `/add-favourite-genre?genre=${genre}`,
-              {
-                method: 'POST',
-              }
-            );
+            const response = await fetch(`/api/user/add-genre?genre=${genre}`, {
+              method: 'POST',
+            });
             if (response.status === 200) {
               console.log('genere preferito aggiunto');
               searchGenre.querySelector('input[name="query"]').value = '';
@@ -498,7 +497,7 @@
 
       async function favGen() {
         try {
-          const response = await fetch('/get-favourite-genres', {
+          const response = await fetch('/api/user/get-genres', {
             method: 'GET',
           });
           if (response.ok) {
@@ -524,7 +523,7 @@
               removeBtn.addEventListener('click', async () => {
                 try {
                   const response = await fetch(
-                    `/remove-favourite-genre?genre=${genre}`,
+                    `/api/user/remove-genre?genre=${genre}`,
                     {
                       method: 'DELETE',
                     }
@@ -553,7 +552,7 @@
 
       const playlistCards = document.getElementById('playlist-cards');
 
-      fetch('/get-created-playlists')
+      fetch('/api/playlist/get-created-playlists')
         .then((response) => response.json())
         .then((data) => {
           if (data.status === 'ok') {

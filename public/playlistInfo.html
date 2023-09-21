@@ -256,7 +256,7 @@
       const playlistQuantity = document.querySelector('.track-quantity');
       (async () => {
         try {
-          const response = await fetch('/get-playlist/' + id);
+          const response = await fetch('/api/playlist/' + id);
           if (response.status === 200) {
             const r = await response.json();
             const playlist = r.data;
@@ -451,7 +451,7 @@
       })();
 
       function removeTrack(trackId, playlistId) {
-        fetch('/remove-track-playlist', {
+        fetch('/api/playlist/remove-track', {
           method: 'DELETE',
           body: JSON.stringify({
             playlistId: playlistId,
@@ -473,7 +473,7 @@
       }
 
       function deletePlaylist() {
-        fetch('/delete-playlist/' + id, {
+        fetch('/api/playlist/delete/' + id, {
           method: 'DELETE',
         })
           .then((res) => res.json())
@@ -488,7 +488,7 @@
       }
 
       function followPlaylist() {
-        fetch('/follow-playlist/' + id, {
+        fetch('/api/playlist/follow/' + id, {
           method: 'POST',
         })
           .then((res) => res.json())
@@ -503,7 +503,7 @@
       }
 
       function unfollowPlaylist() {
-        fetch('/unfollow-playlist/' + id, {
+        fetch('/api/playlist/unfollow/' + id, {
           method: 'DELETE',
         })
           .then((res) => res.json())

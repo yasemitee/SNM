@@ -248,7 +248,7 @@
       }
 
       let userPlaylists = [];
-      fetch('/get-created-playlists')
+      fetch('/api/playlist/get-created-playlists')
         .then((response) => response.json())
         .then((data) => {
           if (data.status === 'ok') {
@@ -294,7 +294,7 @@
       });
       const addTrackToPlaylist = async (playlistId, trackId) => {
         const response = await fetch(
-          `/add-track-playlist?playlistId=${playlistId}&trackId=${trackId}`,
+          `/api/playlist/add-track?playlistId=${playlistId}&trackId=${trackId}`,
           {
             method: 'POST',
           }
@@ -333,7 +333,9 @@
           if (query.length < 1) {
             return;
           }
-          const response = await fetch(`/search-tracks?query=${query}`);
+          const response = await fetch(
+            `/api/spotify/search-tracks?query=${query}`
+          );
           const data = await response.json();
 
           const tracks = data.data;
@@ -361,7 +363,7 @@
             card.addEventListener('click', (e) => {
               const trackId =
                 e.currentTarget.querySelector('.track-id').textContent;
-              fetch('/get-track/' + trackId)
+              fetch('/api/spotify/get-track/' + trackId)
                 .then((response) => response.json())
                 .then((data) => {
                   if (data.status === 'ok') {
@@ -440,13 +442,15 @@
           if (query.length < 1) {
             return;
           }
-          const response = await fetch(`/search-artist?artist=${query}`);
+          const response = await fetch(
+            `/api/spotify/search-artist?artist=${query}`
+          );
           const data = await response.json();
           console.log(data.data);
 
           const artistId = data.data[0].id;
           const response2 = await fetch(
-            `/get-artist-tracks?artistId=${artistId}`
+            `/api/spotify/get-artist-tracks?artistId=${artistId}`
           );
           const data2 = await response2.json();
           const tracks = data2.data;
@@ -475,7 +479,7 @@
             card.addEventListener('click', (e) => {
               const trackId =
                 e.currentTarget.querySelector('.track-id').textContent;
-              fetch('/get-track/' + trackId)
+              fetch('/api/spotify/get-track/' + trackId)
                 .then((response) => response.json())
                 .then((data) => {
                   if (data.status === 'ok') {
@@ -555,7 +559,9 @@
           if (query.length < 1) {
             return;
           }
-          const response = await fetch(`/recommendations-genre?query=${query}`);
+          const response = await fetch(
+            `/api/spotify/recommendations-genre?query=${query}`
+          );
           const data = await response.json();
           const tracks = data.data.tracks;
           const tracksContainer = document.querySelector('.tracks-card .row');
@@ -565,7 +571,7 @@
             const noTracks = document.createElement('div');
             noTracks.classList.add('col-12', 'w-100');
             noTracks.innerHTML = `
-            <h3 class="text-center mt-5">Nessun brano trovato</h3>
+            <h3 class="text-center mt-5">Nessuna traccia trovat</h3>
             `;
             tracksContainer.appendChild(noTracks);
           }
@@ -589,7 +595,7 @@
             card.addEventListener('click', (e) => {
               const trackId =
                 e.currentTarget.querySelector('.track-id').textContent;
-              fetch('/get-track/' + trackId)
+              fetch('/api/spotify/get-track/' + trackId)
                 .then((response) => response.json())
                 .then((data) => {
                   if (data.status === 'ok') {
@@ -660,7 +666,7 @@
         });
 
       const tracksContainer = document.querySelector('.tracks-card .row');
-      fetch('/recommendations')
+      fetch('/api/spotify/recommendations')
         .then((response) => response.json())
         .then((data) => {
           if (data.status === 'ok') {
@@ -690,7 +696,7 @@
               card.addEventListener('click', (e) => {
                 const trackId =
                   e.currentTarget.querySelector('.track-id').textContent;
-                fetch('/get-track/' + trackId)
+                fetch('/api/spotify/get-track/' + trackId)
                   .then((response) => response.json())
                   .then((data) => {
                     if (data.status === 'ok') {
@@ -762,7 +768,7 @@
             const noTracks = document.createElement('div');
             noTracks.classList.add('col-12', 'w-100');
             noTracks.innerHTML = `
-            <h3 class="text-center mt-5">Nessun brano trovato</h3>
+            <h3 class="text-center mt-5">Nessuna traccia trovata</h3>
             `;
             tracksContainer.appendChild(noTracks);
           }

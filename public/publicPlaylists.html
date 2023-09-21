@@ -243,12 +243,16 @@
       const playlistContainer = document.querySelector('.playlists-card .row');
       (async () => {
         try {
-          const response = await fetch('/get-playlists-public');
+          const response = await fetch('/api/playlist/get-playlists-public');
           const data = await response.json();
           const playlists = data.data;
           if (playlists.length === 0 || data.status != 'ok') {
-            playlistContainer.innerHTML =
-              '<h3 class="text-center">Nessuna playlist trovata</h3>';
+            const noPlay = document.createElement('div');
+            noPlay.classList.add('col-12', 'w-100');
+            noPlay.innerHTML = `
+            <h3 class="text-center mt-5">Nessuna playlist trovata</h3>
+            `;
+            playlistContainer.appendChild(noPlay);
             return;
           }
           playlistContainer.innerHTML = '';
@@ -385,7 +389,7 @@
         .querySelector('input[name="query"]')
         .addEventListener('input', async (e) => {
           const query = e.target.value;
-          const response = await fetch('/get-playlists-public');
+          const response = await fetch('/api/playlist/get-playlists-public');
           const data = await response.json();
           const playlists = data.data;
           const filteredPlaylists = playlists.filter((playlist) =>
@@ -394,8 +398,12 @@
 
           playlistContainer.innerHTML = '';
           if (filteredPlaylists.length === 0) {
-            playlistContainer.innerHTML =
-              '<h3 class="text-center">Nessuna playlist trovata</h3>';
+            const noPlay = document.createElement('div');
+            noPlay.classList.add('col-12', 'w-100');
+            noPlay.innerHTML = `
+            <h3 class="text-center mt-5">Nessuna playlist trovata</h3>
+            `;
+            playlistContainer.appendChild(noPlay);
             return;
           }
           filteredPlaylists.forEach((playlist) => {
@@ -507,7 +515,7 @@
         .querySelector('input[name="query"]')
         .addEventListener('input', async (e) => {
           const query = e.target.value;
-          const response = await fetch('/get-playlists-public');
+          const response = await fetch('/api/playlist/get-playlists-public');
           const data = await response.json();
           const playlists = data.data;
           console.log(query);
@@ -518,8 +526,12 @@
           );
           playlistContainer.innerHTML = '';
           if (filteredPlaylists.length === 0) {
-            playlistContainer.innerHTML =
-              '<h3 class="text-center">Nessuna playlist trovata</h3>';
+            const noPlay = document.createElement('div');
+            noPlay.classList.add('col-12', 'w-100');
+            noPlay.innerHTML = `
+            <h3 class="text-center mt-5">Nessuna playlist trovata</h3>
+            `;
+            playlistContainer.appendChild(noPlay);
             return;
           }
           filteredPlaylists.forEach((playlist) => {
@@ -631,7 +643,7 @@
         .querySelector('input[name="query"]')
         .addEventListener('input', async (e) => {
           const query = e.target.value;
-          const response = await fetch('/get-playlists-public');
+          const response = await fetch('/api/playlist/get-playlists-public');
           const data = await response.json();
           const playlists = data.data;
           console.log(query);
@@ -642,8 +654,12 @@
           );
           playlistContainer.innerHTML = '';
           if (filteredPlaylists.length === 0) {
-            playlistContainer.innerHTML =
-              '<h3 class="text-center">Nessuna playlist trovata</h3>';
+            const noPlay = document.createElement('div');
+            noPlay.classList.add('col-12', 'w-100');
+            noPlay.innerHTML = `
+            <h3 class="text-center mt-5">Nessuna playlist trovata</h3>
+            `;
+            playlistContainer.appendChild(noPlay);
             return;
           }
           filteredPlaylists.forEach((playlist) => {

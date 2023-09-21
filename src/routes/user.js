@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const Playlist = require('../models/playlist.js');
 const Token = require('../models/spotifyToken.js');
 
-router.post('/registrazione', async (req, res) => {
+router.post('/register', async (req, res) => {
   /*
     #swagger.tags = ["Auth"]
     #swagger.summary = "Registrazione di un nuovo utente"
@@ -128,7 +128,7 @@ router.post('/login', async (req, res) => {
   return res.status(400).json({ error: error });
 });
 
-router.delete('/detete-account', auth, async (req, res) => {
+router.delete('/detete', auth, async (req, res) => {
   /*
     #swagger.tags = ["User"]
     #swagger.summary = "Elimina l'account dell'utente"
@@ -165,7 +165,7 @@ router.delete('/detete-account', auth, async (req, res) => {
   }
 });
 
-router.get('/get-user-info', auth, async (req, res) => {
+router.get('/info', auth, async (req, res) => {
   /*
     #swagger.tags = ["User"]
     #swagger.summary = "Restituisce le informazioni dell'utente"
@@ -185,7 +185,7 @@ router.get('/get-user-info', auth, async (req, res) => {
   }
 });
 
-router.post('/add-favourite-artist', auth, async (req, res) => {
+router.post('/add-artist', auth, async (req, res) => {
   /*
     #swagger.tags = ["User favourite"]
     #swagger.summary = "Aggiunge un artista ai preferiti dell'utente"
@@ -234,7 +234,7 @@ router.post('/add-favourite-artist', auth, async (req, res) => {
   }
 });
 
-router.get('/get-favourite-artists', auth, async (req, res) => {
+router.get('/get-artists', auth, async (req, res) => {
   /*
     #swagger.tags = ["User favourite"]
     #swagger.summary = "Restituisce gli artisti preferiti dell'utente"
@@ -251,7 +251,7 @@ router.get('/get-favourite-artists', auth, async (req, res) => {
   }
 });
 
-router.delete('/remove-favourite-artist', auth, async (req, res) => {
+router.delete('/remove-artist', auth, async (req, res) => {
   /*
     #swagger.tags = ["User favourite"]
     #swagger.summary = "Rimuove un artista dai preferiti dell'utente"
@@ -269,7 +269,7 @@ router.delete('/remove-favourite-artist', auth, async (req, res) => {
   }
 });
 
-router.post('/add-favourite-genre', auth, async (req, res) => {
+router.post('/add-genre', auth, async (req, res) => {
   /*
     #swagger.tags = ["User favourite"]
     #swagger.summary = "Aggiunge un genere ai preferiti dell'utente"
@@ -288,7 +288,7 @@ router.post('/add-favourite-genre', auth, async (req, res) => {
   }
 });
 
-router.get('/get-favourite-genres', auth, async (req, res) => {
+router.get('/get-genres', auth, async (req, res) => {
   /*
     #swagger.tags = ["User favourite"]
     #swagger.summary = "Restituisce i generi preferiti dell'utente"
@@ -305,7 +305,7 @@ router.get('/get-favourite-genres', auth, async (req, res) => {
   }
 });
 
-router.delete('/remove-favourite-genre', auth, async (req, res) => {
+router.delete('/remove-genre', auth, async (req, res) => {
   /*
     #swagger.tags = ["User favourite"]
     #swagger.summary = "Rimuove un genere dai preferiti dell'utente"
@@ -323,7 +323,7 @@ router.delete('/remove-favourite-genre', auth, async (req, res) => {
   }
 });
 
-router.patch('/update-user-info', auth, async (req, res) => {
+router.patch('/edit', auth, async (req, res) => {
   /*
     #swagger.tags = ["User"]
     #swagger.summary = "Aggiorna le informazioni dell'utente"
@@ -340,6 +340,12 @@ router.patch('/update-user-info', auth, async (req, res) => {
       updateFields.username = req.body.username;
     }
     if (req.body.password) {
+      if (req.body.password.length < 5) {
+        return res.status(400).json({
+          status: 'error',
+          error: 'La password deve essere lunga almeno 5 caratteri',
+        });
+      }
       const password = await bycrypt.hash(req.body.password, 10);
       updateFields.password = password;
     }
