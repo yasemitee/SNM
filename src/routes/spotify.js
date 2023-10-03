@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('./auth');
+const auth = require('../utility/auth');
 const Playlist = require('../models/playlist.js');
 const User = require('../models/user.js');
 const spotify = require('../utility/spotify-api-calls.js');

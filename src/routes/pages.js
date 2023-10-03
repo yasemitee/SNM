@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('./auth');
+const auth = require('../utility/auth');
 
 __dirname = __dirname.replace('/src/routes', '');
 
