@@ -225,7 +225,11 @@
         <div class="row p-3 pe-0" id="recommendation">
           <h2 class="mb-4 p-0 fw-bold">Brani consigliati</h2>
           <div class="swiper mySwiper">
-            <div class="swiper-wrapper"></div>
+            <div class="swiper-wrapper">
+              <div class="spinner-border ms-3" id="loader" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
             <div class="swiper-scrollbar"></div>
           </div>
         </div>
@@ -530,6 +534,8 @@
             const mySwiperWrapper = document.querySelector(
               '#recommendation .swiper-wrapper'
             );
+            const loader = document.getElementById('loader');
+            loader.remove();
             tracks.forEach((track) => {
               const swiperSlide = document.createElement('div');
               swiperSlide.classList.add('swiper-slide');
