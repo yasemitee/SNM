@@ -783,10 +783,12 @@
               });
             });
           } else {
+            const loader = document.getElementById('loader');
+            loader.classList.add('d-none');
             const noTracks = document.createElement('div');
             noTracks.classList.add('col-12', 'w-100');
             noTracks.innerHTML = `
-            <h3 class="text-center mt-5">Nessuna traccia trovata</h3>
+            <h3 class="text-center mt-5">Nessun brano consigliato disponibile</h3>
             `;
             tracksContainer.appendChild(noTracks);
           }
