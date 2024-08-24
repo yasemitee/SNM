@@ -171,7 +171,11 @@ router.get('/recommendations', auth, async (req, res) => {
   const artistsSeed = newArtists.map((artist) => artist.id).join(',');
   const genresSeed = newGenres.join(',');
 
-  let { token: spotifyToken } = await Token.findOne({}).lean();
+  let tokenEntry = await Token.findOne({}).lean();
+  if (!tokenEntry) {
+    spotifyToken = await spotify.refreshToken();
+  }
+
   try {
     let raccomandationsR = await spotify.getRecommendations(
       spotifyToken,
